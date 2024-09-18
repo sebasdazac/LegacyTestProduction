@@ -1,0 +1,159 @@
+﻿@using LegacyTest.Models.Request
+
+@model List<ReportRequest>
+
+@{
+    var urlHelper = Url.Action("GeneratePdf", "Pdf");
+}
+
+<style>
+    .accordion-button::after {
+        display: none; /* Elimina el ícono predeterminado de Bootstrap */
+    }
+</style>
+
+<div class="banner-section-right" style="background-image: url('/img/diagnostic-min.jpg');">
+    <div class="col-lg-6">
+        <p class="fs-4 mb-4">
+            Te presentamos los resultados generados por LegacyTest, una herramienta diseñada para impulsar el crecimiento y la mejora de tu empresa familiar.
+        </p>
+        <p class="fs-4 mb-4">
+            Descubre cómo esta potente herramienta puede beneficiar a tu negocio y ayudarte a alcanzar nuevos niveles de éxito.
+        </p>
+    </div>
+</div>
+
+<div class="row bg-blue2 pb-5">
+    <div class="col-md-12 p-5">
+        <h3 class="fw-bolder text-white"><i class="bi bi-bar-chart-line me-2"></i>Diagnóstico Empresarial</h3>
+    </div>
+</div>
+
+<div class="container-fluid px-4">
+    <div class="card card-container p-5">
+        <div class="row">
+            <div class="tab-content" id="myTabContent">
+                @foreach (var item in Model)
+                {
+                    <div class="tab-pane fade @(Model.IndexOf(item) == 0 ? "show active" : "")" id="contenido@(item.Id)" role="tabpanel" aria-labelledby="tab-@(item.Id)">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header bg-blue2">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                
+
+                                                <button class="btn btn-outline-light fs-6 mt-2 ms-5" id="btnExportReport" onclick="exportReport(@item.Id)">
+                                                    <span class="page-header-icon"><i class="bi bi-filetype-pdf me-2"></i></span>
+                                                    Generar PDF
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row justify-content-center align-items-center">
+                                                    <div class="text-center">
+                                                        <h5 class="text-center text-white fw-bold mt-3">@item.NameForm.ToUpper()</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 d-flex justify-content-end align-items-center">
+                                                <button class="btn btn-outline-light fs-5 me-5" type="button"
+                                                        data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasWithTabs"
+                                                        aria-controls="offcanvasWithTabs"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        data-bs-custom-class="custom-tooltip"
+                                                        title="Menú Reportes">
+                                                    <span class="page-header-icon">
+                                                        <i class="bi bi-menu-up"></i>
+                                                    </span>
+                                                    Ver Reportes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-5">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-justify fs-6 mb-3">@item.DescriptionReport</p>
+                                                <table class="table table-bordered" id="table-@item.Id">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center bg-blue3 text-white" scope="col">@item.ReportScaleList.Select(x => x.Title).Distinct().First().ToUpper()</th>
+                                                            <th class="text-center bg-blue3 text-white" scope="col">DESCRIPCIÓN</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var scale in @item.ReportScaleList)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-center p-3">@scale.Category</td>
+                                                                <td class="text-justify p-3">@scale.Description</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row bg-blue2 mb-2 p-2 text-center text-white fs-5 fw-bold">
+                                                    <label>Diagnóstico Actual</label>
+                                                </div>
+
+                                                <div class="container">
+                                                    @{
+                                                        string path = $"~/Views/Reports/_chart{item.Id}.cshtml";
+                                                        @Html.Partial(path)
+                                                        ;
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithTabs" aria-labelledby="offcanvasWithTabsLabel">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title blue2 fw-bolder" id="offcanvasWithTabsLabel">Seleccionar Reporte</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body main-menu">
+        <!-- Tab Navigation moved to offcanvas -->
+        <ul class="nav nav-pills flex-column" id="tabList" role="tablist">
+            @foreach (var item in Model)
+            {
+                <li class="nav-item" role="presentation">
+                    <a class="main-menu-link mb-2 @(Model.IndexOf(item) == 0 ? "active" : "")" id="tab-@(item.Id)" data-bs-toggle="tab" href="#contenido@(item.Id)" role="tab" aria-controls="contenido@(item.Id)" aria-selected="@(Model.IndexOf(item) == 0 ? "true" : "false")">
+                        @item.NameForm.ToUpper()
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        function exportReport(reportId) {
+            var url = '@urlHelper' + '?idForm=' + reportId;
+            window.location.href = url;
+        }
+    </script>
+
+
+    @foreach (var item in Model)
+    {
+       <script src="~/js/report/chart@(item.Id).js"></script>      
+    }
+}

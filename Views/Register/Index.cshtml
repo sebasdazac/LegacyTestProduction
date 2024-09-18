@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Registro Legacy Test</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+
+    <main>
+        <div class="container px-4 pt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header bg-legacy-0 align-content-center">
+                            <h4 class="text-center text-white">Regístrate a</h4>
+                            <img src="~/img/logo-legacytest-white.svg"  alt="SVG" class="mx-auto d-block p-3" height="100" />
+                        </div>
+                        <div class="card-body">                            
+                            <form>                              
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="name">Nombres</label>
+                                            <input class="form-control" id="name" name="name" type="text" placeholder="Ingresa tus nombres" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="surname">Apellidos</label>
+                                            <input class="form-control" id="surname" name="surname" type="text" placeholder="Ingresa tus apellidos" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="email">Correo electrónico</label>
+                                    <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Form Group (password)-->
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="inputPassword">Contraseña</label>
+                                            <input class="form-control" id="inputPassword" type="password" placeholder="Enter password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Form Group (confirm password)-->
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="inputConfirmPassword">Confirmar Contraseña</label>
+                                            <input class="form-control" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
+                                        </div>
+                                    </div>
+                                </div>                                              <!-- Form Group (create account submit)-->
+                               
+                            </form>
+                            <button class="btn btn-warning form-control text-white fw-bolder">Crear Cuenta</button>
+                        </div>
+                        <div class="card-footer text-center pb-3">
+                            <a class="text-black " asp-controller="Login" asp-action="Index">¿Tienes una cuenta? Ir a iniciar sesión</a>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

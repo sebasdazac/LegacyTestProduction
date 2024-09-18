@@ -1,0 +1,75 @@
+﻿@using LegacyTest.Tools;
+@{
+    var idCompany = Int32.Parse(SessionHelper.GetValue(User, "IdCompany").ToString());
+}
+
+<div class="banner-section" style="background-image: url('/img/wp_wellcome-min.jpg');">
+    <div class="row" style="position: absolute; bottom: 0; width: 100%; height:100%;">
+        <div class="col-md-6 p-5 overlay h-100">
+            <p class="display-6 fw-bolder blue5">¡Bienvenido!</p>          
+            <p class="mt-5 text-justify">
+                LEGACY TEST, ofrece un completo diagnóstico sobre 18 aspectos clave del sistema familiar, empresarial y patrimonial.
+                El resultado de este diagnóstico le permitirá conocer el estado actual y le dará unas recomendaciones iniciales que puede implementar para el éxito y la sostenibilidad de sus empresas a largo plazo. El equilibrio entre estos aspectos aumenta la probabilidad de éxito de su(s) compañía(s).
+                Legacy Test, con un enfoque integral, abarca temas desde las trampas familiares hasta la estructura organizacional y los sistemas de dirección.
+            </p>          
+        </div>
+    </div>
+</div>
+
+<div class="row m-5">
+    <div class="col-md-4 mb-4">
+        <a class="card card-link" asp-controller="Questionary" asp-action="Index" asp-route-idCompany=@idCompany>
+            <div class="card-body d-flex justify-content-center flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="me-3">                       
+                        <h3 class="fw-bolder blue3"><i class="bi bi-journal-check me-2"></i>Cuestionarios</h3>
+                        <div class="small">
+                            <p class="fs-6">
+                                ¡Adelante, conquista esos cuestionarios y deja tu huella en Legacy Test!
+                            </p>
+                        </div>
+                    </div>
+                    <img src="~/img/questionary-min.jpg" class="rounded w-25" />
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <a class="card card-link" asp-controller="Reports" asp-action="Index">
+            <div class="card-body d-flex justify-content-center flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="me-3">
+                        <h3 class="fw-bolder blue4"><i class="bi  bi-bar-chart-line me-2"></i>Diagnóstico</h3>
+                        <div class="small">
+                            <p class="fs-6">
+                                ¡Visualiza y genera un informes PDF que reflejen tu progreso!
+                            </p>
+                        </div>
+                    </div>
+                    <img src="~/img/reports-min.jpg" class="rounded w-25"/>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <!-- Illustration card example-->
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <div class="row image-section m-0 p-0" style="background-image: url('/img/emotion-min.jpg');">                   
+                </div>            
+                <label class="fs-3 fw-bolder p-3">¡Emociónate <br />una vez más!</label>
+                <p class="text-justify mt-4 fs-6">
+                    Imagina un espacio donde la información fluye como un río de conocimiento, donde cada detalle cuenta la historia de tu avance.
+                    Desde hitos cruciales hasta oportunidades de mejora, este tablero es tu ventana a un panorama empresarial vibrante.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

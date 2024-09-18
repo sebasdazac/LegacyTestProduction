@@ -1,0 +1,172 @@
+﻿html {
+
+    -webkit-print-color-adjust:exact;
+}
+.red {
+  color: rgba(255, 99, 132, 1);
+}
+
+.yellow {
+  color: rgba(236, 190, 79, 1);
+}
+
+.blue {
+  color: rgba(52, 156, 227, 1);
+}
+
+.green {
+  color: rgba(75, 192, 192, 1);
+}
+
+.blue1 {
+  color: rgba(22, 37, 64, 1);
+}
+
+.blue2 {
+  color: rgba(24, 61, 107, 1);
+}
+
+.blue3 {
+  color: rgba(48, 108, 158, 1);
+}
+
+.blue4 {
+  color: rgba(117, 166, 205, 1);
+}
+
+.blue5 {
+  color: rgba(149, 186, 216, 1);
+}
+
+.black {
+  color: rgba(0, 0, 0, 1);
+}
+
+.gray {
+  color: rgba(51, 51, 51, 1);
+}
+
+.light-gray {
+  color: rgba(51, 51, 51, 0.35);
+}
+
+.white {
+  color: rgba(255, 255, 255, 1);
+}
+
+.ochre {
+  color: rgba(193, 128, 12, 1);
+}
+
+.purple {
+  color: rgba(58, 25, 86, 1);
+}
+
+.aquamarine {
+  color: rgba(11, 72, 79, 1);
+}
+
+.dark-green {
+  color: rgba(13, 66, 27, 1);
+}
+
+.burgundy {
+  color: rgba(68, 13, 8, 1);
+}
+
+.fuchsia {
+  color: rgba(112, 8, 107, 1);
+}
+
+.turquoise {
+  color: rgba(31, 127, 118, 1);
+}
+
+.green {
+  color: rgba(22, 89, 46, 1);
+}
+
+.red {
+  color: rgba(119, 21, 21, 1);
+}
+
+/*background*/
+.bg-red {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.bg-yellow {
+    background-color: rgba(236, 190, 79, 1);
+}
+
+.bg-blue {
+    background-color: rgba(52, 156, 227, 1);
+}
+
+.bg-green {
+    background-color: rgba(75, 192, 192, 1);
+}
+
+.bg-blue1 {
+    background-color: rgba(22, 37, 64, 1);
+}
+
+.bg-blue2 {
+    background-color: rgba(24, 61, 107, 1);
+}
+
+.bg-blue3 {
+    background-color: rgba(48, 108, 158, 1) !important;
+}
+
+.bg-blue4 {
+    background-color: rgba(117, 166, 205, 1);
+}
+
+.bg-blue5 {
+    background-color: rgba(149, 186, 216, 1);
+}
+
+.bg-black {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.bg-gray {
+    background-color: rgba(51, 51, 51, 1);
+}
+
+.bg-light-gray {
+    background-color: rgba(51, 51, 51, 0.35);
+}
+
+.bg-white {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.bg-ochre {
+    background-color: rgba(193, 128, 12, 1);
+}
+
+.bg-purple {
+    background-color: rgba(58, 25, 86, 1);
+}
+
+.bg-aquamarine {
+    background-color: rgba(11, 72, 79, 1);
+}
+
+.bg-dark-green {
+    background-color: rgba(13, 66, 27, 1);
+}
+
+.bg-burgundy {
+    background-color: rgba(68, 13, 8, 1);
+}
+
+.bg-fuchsia {
+    background-color: rgba(112, 8, 107, 1);
+}
+
+.bg-turquoise {
+    background-color: rgba(31, 127, 118, 1);
+}

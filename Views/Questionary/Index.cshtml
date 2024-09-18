@@ -1,0 +1,88 @@
+﻿@using LegacyTest.Models
+@using LegacyTest.Tools
+
+@{
+    ViewData["Title"] = "Cuestionarios";
+}
+
+@model List<Form>
+
+@{
+    var IdPerson = @SessionHelper.GetValue(User, "IdPerson").ToString();
+    var IdCompany = @SessionHelper.GetValue(User, "IdCompany").ToString();
+    var IdPlan = SessionHelper.GetValue(User, "IdPlan").ToString();
+}
+
+<div class="banner-section-right" style="background-image: url('/img/questions-min.jpg');">
+    <div class="col-lg-6">
+        <p class="fs-6 mb-4">
+            Descubre los emocionantes cuestionarios que están disponibles en tu plan. ¡Haz clic  en <strong>Diligenciar</strong> ahora mismo para completarlos!
+        </p>
+        <br />
+        <p class="fs-6 mb-4">
+            Responde todas las preguntas con sinceridad utilizando las opciones por cada una.
+            No dejes ninguna sin contestar para generar un análisis y reporte completo.           
+        </p>
+        <p class="fs-4 fw-bold"> Tienes 2 intentos y 60 días para completarlo. ¡Comienza ahora mismo!</p>
+
+    </div>
+</div>
+<div class="row bg-blue2 pb-5">
+    <div class="col-md-12 p-5">
+        <h3 class=" fw-bolder text-white"><i class="bi bi-journal-check me-2"></i>Cuestionarios</h3>
+    </div>
+</div>
+
+<div class="container-fluid  px-4 mt-n10">
+    <div class="card card-container p-5">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header  @(GetBorderClass(item))">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold text-white mb-1">Cuestionario @item.Id </div>
+                                </div>
+                                <div class="ms-2"><i class="fas fa-clipboard-check fa-2x text-gray-200"></i></div>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-primary mb-1">@(item.NameForm) </h5>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-secondary mt-3 mb-3"
+                               asp-controller="Questionary" asp-action="QuestionaryByCompany"
+                               asp-route-idForm="@(item.Id)">
+                                Diligenciar
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+@{
+    string GetBorderClass(Form item)
+    {
+        switch (item.Id % 4)
+        {
+            case 0:
+                return "bg-blue";
+            case 1:
+                return "bg-blue2";
+            case 2:
+                return "bg-blue3";
+            case 3:
+                return "bg-blue4";
+            default:
+                return "bg-blue5";
+        }
+    }
+}

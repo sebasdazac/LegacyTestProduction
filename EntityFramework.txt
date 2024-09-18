@@ -1,0 +1,90 @@
+Scaffold-DbContext "Data Source=66.94.114.234;Initial Catalog=LocalBd;User ID=sa;Password=Legacytest2023;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -DataAnnotations -Force
+Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=LegacyDB;Trusted_Connection= True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+
+
+
+
+Scaffold-DbContext "Data Source=localhost;Initial Catalog=LegacyTesting;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+
+
+
+https://www.youtube.com/watch?v=xqz0Iii7yHM&ab_channel=tutorialsEU-C%23
+
+private readonly IConfiguration _configuration;
+
+private IDbConnection DbConnection { get; }
+public LegacyDBContext()
+{
+}
+
+public LegacyDBContext(DbContextOptions<LegacyDBContext> options, IConfiguration configuration)
+    : base(options)
+{
+    this._configuration = configuration;
+    DbConnection = new SqlConnection(this._configuration.GetConnectionString("LegacyConnection"));
+}
+
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+
+        optionsBuilder.UseSqlServer(DbConnection.ToString());
+    }
+}
+
+USE LegacyDB;
+
+SELECT 
+    'ALTER TABLE [' + OBJECT_NAME(fkc.parent_object_id) + '] DROP CONSTRAINT [' + fk.name + ']' AS DropFKScript,
+    'TRUNCATE TABLE [' + OBJECT_NAME(fkc.parent_object_id) + ']' AS TruncateScript,
+    'DBCC CHECKIDENT ([' + OBJECT_NAME(fkc.parent_object_id) + '], RESEED, 1)' AS ReseedScript,
+    'ALTER TABLE [' + OBJECT_NAME(fkc.parent_object_id) + '] WITH CHECK ADD CONSTRAINT [' + fk.name + '] FOREIGN KEY(' + COL_NAME(fkc.parent_object_id, fkc.parent_column_id) + ') REFERENCES [' + OBJECT_NAME(fkc.referenced_object_id) + '] (' + COL_NAME(fkc.referenced_object_id, fkc.referenced_column_id) + ')' AS CreateFKScript
+   
+FROM 
+    sys.foreign_keys AS fk
+INNER JOIN 
+    sys.foreign_key_columns AS fkc ON fk.object_id = fkc.constraint_object_id
+WHERE 
+    fkc.referenced_object_id = OBJECT_ID('Question')
+    OR fkc.parent_object_id = OBJECT_ID('Question');
+
+
+
+delete from Answer;
+delete from AnswerCompany;
+delete from AnswerCriterionCompany;
+delete from AnswerPerson;
+delete from CharacterizationByCompany;
+delete from CharacterizationEffect;
+delete from CharacterizationRecomendation;
+--delete from Company;
+delete from Criterion;
+delete from CriterionCharacterization;
+delete from CriterionClasification;
+--delete from Dimension;
+delete from Question;
+--delete from ReportScale;
+
+
+
+Á: \u00C1
+É: \u00C9
+Í: \u00CD
+Ó: \u00D3
+Ú: \u00DA
+Ü: \u00DC
+á: \u00E1
+é: \u00E9
+í: \u00ED
+ó: \u00F3
+ú: \u00FA
+ü: \u00FC
+
+
+
+  complete: function ()
+    {
+        window.JSREPORT_READY_TO_START = true
+    }

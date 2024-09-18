@@ -1,0 +1,402 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
+
+.container-fluid {
+    flex: 1;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;  
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#004080;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:  #002B5B; 
+  }
+
+.text-justify {
+    text-align: justify;
+}
+
+  
+.icon-blue {
+    color:#002B5B;
+}
+
+.icon-white {
+    color: #ffffff;  
+}
+
+.icon-small {
+    width: 1rem; 
+    height: 1rem;
+}
+
+.icon-medium {
+    width: 1.25rem; 
+    height: 1.25rem;
+}
+
+
+.icon-large {
+    width: 1.5rem; 
+    height: 1.5rem;
+}
+
+
+.navbar {
+    background-color: #ffffff; /* Barra superior en blanco */
+    border-bottom: 10px solid #e4e4e4; /* Borde gris en la parte inferior */
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos de la barra superior */
+    align-items: center;
+    height: 80px; /* Ajuste de altura de la barra superior */
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding: 0 20px; /* Espaciado lateral */
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.hamburger-btn {
+    background-color: #002B5B; /* Color azul para el botón hamburguesa */
+    border: none;
+    border-radius: 50%;
+    color: #ffffff !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-btn:hover {
+    background-color: #004080; /* Color azul más oscuro en hover */
+}
+
+/* Estilo para el perfil de usuario en el sidebar */
+.user-profile {  
+    background-color: #002B5B; 
+    color: #ffffff;   
+}
+
+.user-profile a{
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block; 
+    color: #ffffff;
+}
+
+.user-profile a:hover{
+   background-color: #004080;
+    color: #ffffff;
+}
+
+
+.user-profile .row {
+    display: flex;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px 0;
+    background-color: #002B5B
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;    
+}
+
+.user-name { 
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #002B5B;
+}
+
+.user-menu {
+    display: none; /* Inicia cerrado */    
+    border-bottom: 2px solid #e4e4e4;    
+}
+
+.user-menu.submenu a:hover i {
+    color: #ffffff !important;     
+}
+
+/* Estilo para el resto del sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    padding-top: 80px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.sidebar.hide {
+    transform: translateX(-250px);
+}
+
+.main-menu a {
+    color: #002B5B;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block; 
+    border-bottom: 1px solid;  
+    border-color: #e4e4e4;
+}
+
+.main-menu a:hover, 
+.main-menu a.active {
+    background-color: #004080;
+    color: #ffffff;
+}
+
+.submenu {
+    background-color:#e4e4e4;   /* Color gris para el submenú desplegado */
+    display: none;
+    padding-left: 20px;
+}
+
+.submenu a {
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block; 
+    color: #002B5B;   
+    text-decoration: none;
+         
+}
+
+.submenu a:hover,
+
+.submenu a.active {
+    background-color: #004080;
+    color: #ffffff;
+}
+
+
+.content {
+    margin-left: 250px;
+    padding: 80px 0px; /* Ajuste de margen superior para no tapar el contenido */
+    margin-right:0;
+    transition: margin-left 0.3s;
+}
+
+
+.hide-sidebar {
+    margin-left: 0;
+}
+
+.hide-sidebar .sidebar {
+    margin-left: -250px;
+}
+
+/* Footer */
+footer {
+    background-color: #002B5B;
+    color: #ffffff;
+    padding: 0;
+    border-top: 10px solid #cc7722;   
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffba00; /* Hover color for social icons */
+}
+
+
+.step {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.step .step-item {
+    flex: 1 1 0;
+    position: relative;
+    text-align: center;
+}
+
+.step .step-item:not(:first-child)::before {
+    background-color: #69707a;
+    content: "";
+    height: 0.125rem;
+    left: -50%;
+    position: absolute;
+    top: 0.4375rem;
+    width: 100%;
+    z-index: 0;
+}
+
+.step .step-item .step-item-link {
+    color: #69707a;
+    position: relative;
+    display: inline-block;
+    padding-top: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.step .step-item .step-item-link::before {
+    background-color: #69707a;
+    border: 0.125rem solid #fff;
+    border-radius: 100%;
+    content: "";
+    display: block;
+    height: 1rem;
+    width: 1rem;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.step .step-item.active a::before {
+    background: #fff;
+    border: 0.125rem solid #69707a;
+}
+
+.step .step-item.active ~ .step-item .step-item-link {
+    color: #d4dae3;
+}
+
+.step .step-item.active ~ .step-item .step-item-link::before {
+    background: #d4dae3;
+}
+
+.step .step-item.active ~ .step-item::before {
+    background: #d4dae3;
+}
+
+/* Clases para step de color azul */
+.step-blue .step-item:not(:first-child)::before {
+    background-color: #0061f2;
+}
+
+.step-blue .step-item .step-item-link {
+    color: #0061f2;
+}
+
+.step-blue .step-item .step-item-link::before {
+    background-color: #0061f2;
+}
+
+.step-blue .step-item.active a::before {
+    border-color: #0061f2;
+}
+
+.banner-section {
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    padding:20px;
+    text-align: center;
+
+}
+
+.banner-section-right {
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    align-items: end;
+    justify-content: right;
+    position: relative;
+    color: #ffffff;
+    padding: 30px;
+    text-align: right;
+    overflow: hidden;
+}
+
+    .banner-section-right::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #002B5B 100%); /* Degradado de transparente a negro */
+        z-index: 1; /* Coloca la máscara detrás del contenido */
+    }
+
+    .banner-section-right * {
+        position: relative; /* Asegura que el contenido esté por encima de la máscara */
+        z-index: 2;
+    }
+
+.banner-section-left {
+    width: 100%;
+    height: 25vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: start;
+    justify-content: left;
+    position: relative;
+    color: #ffffff;
+    padding:30px;
+    text-align: left;
+}
+
+.overlay {
+    background-color: rgba(20, 52, 91,0.7); /* Capa oscura para el texto */  
+    padding:20px;
+}
+
+.card-link {
+    text-decoration:none;
+}
+
+.image-section {
+    width: 100%;
+    height: 25vh; /* Ajusta el div para que ocupe el 100% de la altura de la ventana */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    text-align: right;
+}
+
+.card-container {
+    margin-top: -60px;
+    position: relative;
+   
+}

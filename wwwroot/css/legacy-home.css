@@ -1,0 +1,217 @@
+body {    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
+
+.container-fluid {
+    flex: 1;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #004080;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #002B5B;
+    }
+
+.text-justify {
+    text-align: justify;
+}
+
+.icon-blue {
+    color: #002B5B;
+}
+
+.icon-white {
+    color: #ffffff;
+}
+
+.icon-small {
+    width: 1rem;
+    height: 1rem;
+}
+
+.icon-medium {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+
+.icon-large {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.navbar {
+    background-color: #ffffff; /* Barra superior en blanco */
+    border-bottom: 10px solid #eaedef; /* Borde gris en la parte inferior */
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos de la barra superior */
+    align-items: center;
+    min-height: 80px; /* Ajuste de altura de la barra superior */
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding: 0 20px; /* Espaciado lateral */
+}
+
+
+.hamburger-btn {
+    background-color: #002B5B; /* Color azul para el botón hamburguesa */
+    border: none;
+    border-radius: 50%;
+    color: #ffffff !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+    .hamburger-btn:hover {
+        background-color: #004080; /* Color azul más oscuro en hover */
+    }
+
+.navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    .navbar-brand img {
+        max-height: 40px; /* Ajusta este valor según la altura deseada */
+    }
+
+
+@media (max-width: 991px) {
+    .navbar-brand {
+        position: static;
+        transform: none;
+        margin: 0 auto 1rem auto; /* Deja espacio para el contenido debajo */
+    }
+
+    .navbar-collapse {
+        position: relative;
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .navbar-nav .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+    .navbar-collapse .btn-primary {
+        margin-top: 1rem;
+    }
+}
+
+
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+}
+
+    .nav-link:hover {
+        color: inherit; /* Mantiene el color original del texto al pasar el cursor */
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: #cc7722; /* Código de color ocre */
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+/* Footer */
+footer {
+    background-color: #002B5B;
+    color: #ffffff;
+    padding: 0;
+    border-top: 10px solid #cc7722;
+}
+
+    footer a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            color: #ffba00; /* Hover color for social icons */
+        }
+
+
+.banner-section {
+    width: 100%;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+}
+
+.overlay {
+    background-color: rgba(22, 37, 64,0.5); /* Capa oscura para el texto */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border-radius: 20px; /* Redondeo de las tarjetas */
+    background-color: #eaedef;
+    border: none;
+}
+
+.card-body img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+    .card-body img:hover {
+        transform: scale(1.1);
+    }

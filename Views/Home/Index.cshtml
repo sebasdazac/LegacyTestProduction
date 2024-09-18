@@ -1,0 +1,444 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Network</title>
+
+    <link href="~/css/legacy-bootstrap.css" rel="stylesheet" />
+    <link href="~/css/legacy-color.css" rel="stylesheet" />
+    <link href="~/css/legacy-home.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+</head>
+
+<body class="containter-fluid d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid position-relative pb-lg-0 pb-3">
+            <!-- Logo centrado -->
+            <a class="navbar-brand" href="#">
+                <img src="~/img/logo-legacytest.svg" alt="Logo Legacy Test" class="img-fluid">
+            </a>
+
+            <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+            <button class="hamburger-btn navbar-toggler d-lg-none position-absolute end-0" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list fs-4"></i>
+            </button>
+
+            <!-- Contenedor colapsable alineado a la derecha -->
+            <div class="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-lg-0 ">
+                    <li class="nav-item me-3">
+                        <a class="nav-link fw-bold active" aria-current="page" href="#plans">Planes y Precios</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link  fw-bold" href="#about">Nosotros</a>
+                    </li>
+                </ul>
+                <a class="btn btn-secondary" asp-controller="Login" asp-action="Index">Iniciar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content" id="content">
+        <div class="banner-section" style="background-image: url('img/wp_wellcome-min.jpg');">
+            <div class="overlay pt-5">
+                <div class="banner-content pt-3">
+                    <h1 class="display-6 fw-bolder mb-5">
+                        Bienvenido a <br><span class="fs-1 fw-light">
+                            LEGACT
+                            Test
+                        </span>
+                    </h1>
+                    <h1 class="display-3 fw-bold pb-5 blue5">ENCANTADOS DE CONOCERTE</h1>
+                    <a href="#" class="btn btn-outline-light btn-lg">REGÍSTRATE AQUÍ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row p-5">
+                        <div class="col-md-5">
+                            <h2 class="display-3 mb-5 blue3 fw-bold">¿ Qué es </br> LEGACY Test ? </h2>
+                        </div>
+                        <div class="col-md-7">
+                            <p class="text-justify fs-5">
+
+                                LEGACY TEST, es una herramienta digital, que ha creado Legacy Network para los
+                                empresarios,
+                                esta ofrece un completo diagnóstico sobre 18 aspectos clave del sistema familiar,
+                                empresarial y patrimonial.
+                                El resultado de este diagnóstico le permitirá conocer el estado actual y le dará unas
+                                recomendaciones iniciales
+                                que puede implementar para el éxito y la sostenibilidad de sus empresas a largo plazo.
+                                Puedes tomar el paquete completo de 18 formularios que abarca la totalidad de la
+                                relación
+                                familia, empresa y patrimonio
+                                o diligenciarlos por partes.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="continer-fluid">
+            <div class="row bg-blue3 p-5 m-0" id="plans">
+                <div class="col-md-12">
+                    <p class="text-white fs-2 text-center">
+                        <b>Con Legacy Test, diagnóstica y construye tu legado, paso a paso</b><br>
+                        Elige el plan ideal para ti
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row p-5">
+                <div class="col-md-12">
+                    <div class="table-responsive-md">
+                        <table class="table  table-sm table-striped-columns table-bordered">
+                            <thead>
+                                <tr class="text-white text-center">
+                                    <th class="py-3 w-25" scope="col"></th>
+                                    <th class="py-3 w-15" scope="col">Punto de Partida Empresarial</th>
+                                    <th class="py-3 w-15" scope="col">Suite de Exploración Empresarial</th>
+                                    <th class="py-3 w-15" scope="col">Suite de Evaluación Empresarial </th>
+                                    <th class="py-3 w-15" scope="col">Suite Integral de Diagnóstico </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="">
+                                    <th class="px-2" scope="row"></th>
+                                    <td class="px-2 text-justify">
+                                        <p class="small">
+                                            ¿Sabías que ciertos patrones de comportamiento, creencias y
+                                            prácticas en tu empresa familiar podrían ser trampas que limitan su
+                                            crecimiento
+                                            y armonía? ¡Descúbrelo con nuestro cuestionario! Este breve estudio está
+                                            diseñado para ayudarte a identificar y abordar estas trampas, asegurando la
+                                            sostenibilidad y el éxito de tu negocio y tu familia a largo plazo.
+                                        </p>
+                                    </td>
+                                    <td class="px-2 text-justify">
+                                        <p class="small">
+                                            En el mundo de las empresas familiares, no solo las trampas
+                                            familiares influyen en su éxito. Descubre cómo la confianza y la dirección
+                                            estratégica influyen en tu negocio y cómo puedes mejorar en estos aspectos.
+                                            Entiende el impacto del fundador en la sucesión y gestión del cambio,
+                                            crucial
+                                            para la continuidad y el legado de tu empresa. Aprende en qué etapa del
+                                            ciclo de
+                                            vida se encuentra tu empresa y adapta tus estrategias para un crecimiento
+                                            sostenible.Ilimitadas
+                                        </p>
+                                    </td>
+                                    <td class="px-2 text-justify">
+                                        <p class="small">
+                                            Explora en tu empresa familiar más allá de las trampas comunes.
+                                            Evalúa cómo las patologías organizativas y el equipaje emocional inciden en
+                                            tu
+                                            negocio. Determina la idoneidad del sucesor y su impacto en el liderazgo.
+                                            Considera la cultura de propiedad en decisiones y estrategias. Participa en
+                                            nuestro cuestionario y adquiere conocimientos clave para fomentar un
+                                            crecimiento
+                                            sostenible y armonioso. Transforma tu empresa con conocimientos valiosos.
+                                        </p>
+                                    </td>
+                                    <td class="px-2 text-justify">
+                                        <p class="small">
+                                            Evalúa tu empresa familiar con nuestros cuestionarios: aborda
+                                            las
+                                            tipologías de fundadores y empresas, las etapas de desarrollo y las trampas
+                                            comunes. Diagnostica patologías organizativas, la carga emocional y las
+                                            competencias sucesorias. Profundiza en la cultura de propiedad, las
+                                            estrategias
+                                            empresariales, familiares y patrimoniales. Examina la estructura familiar,
+                                            de
+                                            propiedad y los sistemas de dirección. Identifica áreas de mejora y
+                                            fortalece tu
+                                            legado
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2" scope="row">Espacio empresarial</th>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2" scope="row">Cuentas de usuario</th>
+                                    <td class="px-2 text-center">10</td>
+                                    <td class="px-2 text-center">Ilimitadas</td>
+                                    <td class="px-2 text-center">Ilimitadas</td>
+                                    <td class="px-2 text-center">Ilimitadas</td>
+                                </tr>
+                                <tr>
+                                    <th class="px-2" scope="row">Precios [No incluye IVA]</th>
+                                    <td class="px-2">
+                                        <div class="text-secondary text-center mb-2">
+                                            <span class="h1">$ -</span>
+                                        </div>
+                                        <p class="small text-justify">Descubre las trampas que te impiden avanzar</p>
+
+                                    </td>
+                                    <td class="px-2">
+                                        <div class="text-secondary text-center mb-2">
+                                            <span class="h1">$800</span>
+                                        </div>
+                                        <p class="small text-justify">
+                                            5% en programas de formacion de Legacy School of
+                                            Ownership-LSO
+                                        </p>
+
+                                    </td>
+                                    <td class="px-2">
+                                        <div class="text-secondary text-center mb-2">
+                                            <span class="h1">$1600</span>
+                                        </div>
+                                        <p class="small text-justify">
+                                            10% en programas de formacion de Legacy School of
+                                            Ownership-LSO.
+                                        </p>
+
+                                    </td>
+                                    <td class="px-2">
+                                        <div class="text-secondary text-center mb-2">
+                                            <span class="h1">$2390</span>
+                                        </div>
+                                        <p class="small  text-justify">
+                                            25% en programas de formacion de Legacy School of
+                                            Ownership-LSO.
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Trampas Familiares</th>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Tipologias de empresa familiar</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Tipologías Fundador</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Competencias del Sucesor</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Equipaje emocional</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Cultura de la Propiedad</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Estrategia Familiar</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Estrategia Patrimonial</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Estructura Patrimonial</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Estructura familiar</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Etapa de la empresa</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Gobierno corporativo A Patologías</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Gobierno corporativo B Evolución</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Estructura Organizacional</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Sistemas de dirección</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="">
+                                    <th class="px-2 small" scope="row">Pensamiento estratégico</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <th class="px-2 small" scope="row">Sistema Familiar, patrimonial y empresarial</th>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2"></td>
+                                    <td class="px-2 text-center"><i class="bi bi-check-lg fs-4 fw-bold blue3"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-blue2">
+            <div class="container  p-5">
+                <div class="row" id="about">
+                    <div class="col-md-7">
+                        <p class="text-justify text-white fs-5" >
+                            <b>Legacy Network</b><br>
+                            Es un holding empresarial que trabaja con los propietarios en la toma de decisiones prudentes y
+                            estructurales y lograr así, que su legado transcienda generaciones y crezca de forma sostenible.
+                        </p>
+                    </div>
+                    <div class="col-md-5 d-flex justify-content-center">
+                        <img src="img/legacy-network.png" style="max-height: 12vh;">
+
+                    </div>
+                </div>
+            </div>           
+        </div>        
+        <div class="container">
+            <div class="row m-2 p-5">
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <a href="https://lymgroup.com/" target="_blank">
+                                <img src="img/legacy-and-management.png" class="w-50">
+                            </a>
+                            <p class="text-justify p-3">
+                                Ofrecemos consultoría especializada a empresas familiares, cubriendo aspectos vitales como el gobierno corporativo, la formulación y la implementación de protocolos familiares.
+                                <br /><br />
+                                Mediante estos servicios, dotamos a las familias de las herramientas necesarias para tomar decisiones óptimas en el contexto de sus empresas, patrimonio y relaciones familiares, promoviendo la unidad y el compromiso, que constituyen la ventaja competitiva de las empresas familiares.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <a href="https://lso.school/" target="_blank">
+                                <img src="img/LSO.png" class="w-50">
+                            </a>
+                            <p class="text-justify p-3">
+                                ¿Cómo adquirir herramientas para afrontar los desafios de las empresas de familia de latinoamérica?
+                                <br /><br />
+                                <b>Legacy School of Ownership</b> es una escuela para propietarios creada para resolver las necesidades de las diferentes generaciones. Trabajamos con el método del caso basados en experiencias reales de propietarios latinoamericanos que además de proporcionar conocimientos y habilidades, también fortalecen su voluntad, ayudándolos a ser mejores personas , líderes y a ejercer eficazmente su rol de propietarios, asegurando un futuro sólido y un legado perdurable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <a href="https://aurumbi.com/" target="_blank">
+                                <img src="img/aurum.png" class="w-50">
+                            </a>
+                            <p class="text-justify p-3">
+                                ¿Está su empresa Due Diligence Ready? <br /><br />
+
+                                Trabajamos con los propietarios para tomar decisiones estructurales con disciplina financiera y lograr que su patrimonio se fortalezca y esté siempre Due Diligence Ready, para conservar su legado.<br /><br />
+
+                                Abordamos cada activo como si fuese recién adquirido, manteniendo un manejo disciplinado y riguroso del patrimonio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container-fluid mt-5 p-3">
+        <div class="row m-0 d-flex align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <a href="https://www.facebook.com/profile.php?id=61553186978110" target="_blank"><i class="bi bi-facebook fs-4  mx-2"></i></a>
+                <a href="https://www.instagram.com/legacynetworkco/" target="_blank"><i class="bi bi-instagram fs-4  mx-2"></i></a>
+                <a href="https://www.linkedin.com/posts/legacy-network-co_gobiernocorporativo-planeaciaejnestrataezgicaempresarial-activity-7133490730156601344-iZgZ?utm_source=share&utm_medium=member_android" target="_blank"><i class="bi bi-linkedin fs-4  mx-2"></i></a>
+                <a href="https://www.youtube.com/&#64;LegacyNetworkco" target="_blank">
+                    <i class="bi bi-youtube fs-3  mx-2"></i>
+                </a>
+                <a class="pt-2 me-3 mx-2" href="#">Privacidad</a>
+                <a class="pt-2 me-3 mx-2" href="#">Términos y Referencias</a>
+                <span class="pt-2  ms-5">Copyright &copy; Legacy Network - 2024</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
