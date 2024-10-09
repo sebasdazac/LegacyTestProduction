@@ -49,8 +49,8 @@ namespace LegacyTest.Controllers
                 
                 var login = await _context.People.SingleAsync(x => x.Email.ToUpper() == email.ToUpper()
                                                 && x.Pswd == crypto.Encrypt(pswd));
-                var planCompany = await _context.PlanCompanies.SingleAsync(x => x.IdCompany == login.IdCompany && x.IsActive == true);
-                                                  
+
+                var planCompany = await _context.PlanCompanies.SingleAsync(x => x.IdCompany == login.IdCompany && x.IsActive == true);                                                  
                 
 
                 if (login != null  && planCompany != null)
@@ -60,7 +60,7 @@ namespace LegacyTest.Controllers
                         identity.AddClaim(new Claim(ClaimTypes.Email, login.Email.ToString()));
                         identity.AddClaim(new Claim("IdPerson", login.Id.ToString()));
                         identity.AddClaim(new Claim("IdCompany", login.IdCompany.ToString()));
-                        identity.AddClaim(new Claim("IdPlanCompany", planCompany.IdPlan.ToString()));
+                        identity.AddClaim(new Claim("IdPlanCompany", planCompany.Id.ToString()));
                         identity.AddClaim(new Claim("IdPlan", planCompany.IdPlan.ToString()));
 
 

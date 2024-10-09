@@ -24,11 +24,9 @@ function getLabelForValue(value, vertex) {
 // Luego, dentro del éxito de tu AJAX y la configuración de Chart.js:
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart18",
+    url: "/CharacterizationByCompany/GetChart18?param=" + param,
     success: function (data) {
-
-        console.log(data);
-
+     
         const labels = data.map(item => item.label);
 
         const dataset18 = {
@@ -110,8 +108,13 @@ $.ajax({
                 datasets: allDatasets
             },
             options: {
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                         suggestedMax: 110,
@@ -153,9 +156,7 @@ $.ajax({
                     }
                 }
             }
-        });
-
-        renderOnlyRecommendationAccordion(data, 'effectsAndRecommendationsAlert18','value1', false);
+        });        
     }
 });
 

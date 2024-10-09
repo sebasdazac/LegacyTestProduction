@@ -15,5 +15,7 @@ namespace LegacyTest.Models
         public double Value { get; set; }
         public DateTime Date { get; set; }
         public double? AvgFatherSons { get; set; }
+
+        public virtual Question? IdQuestionNavigation { get; set; } = null!;
     }
 }

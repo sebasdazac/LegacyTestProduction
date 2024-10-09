@@ -94,6 +94,9 @@ html, body {
     background-color: #004080; /* Color azul más oscuro en hover */
 }
 
+a {
+    cursor: pointer;
+}
 /* Estilo para el perfil de usuario en el sidebar */
 .user-profile {  
     background-color: #002B5B; 
@@ -173,7 +176,7 @@ html, body {
 .main-menu a:hover, 
 .main-menu a.active {
     background-color: #004080;
-    color: #ffffff;
+    color: #ffffff;    
 }
 
 .submenu {
@@ -187,16 +190,15 @@ html, body {
     text-decoration: none;
     display: block; 
     color: #002B5B;   
-    text-decoration: none;
-         
+    text-decoration: none;         
 }
 
-.submenu a:hover,
-
-.submenu a.active {
-    background-color: #004080;
-    color: #ffffff;
-}
+    .submenu a:hover,
+    .submenu a.active {
+        background-color: #004080;
+        color: #ffffff;
+      
+    }
 
 
 .content {
@@ -399,4 +401,9 @@ footer a:hover {
     margin-top: -60px;
     position: relative;
    
+}
+
+.hidden-link {
+    visibility: hidden;
+    display:none !important;
 }

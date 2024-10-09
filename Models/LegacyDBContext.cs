@@ -180,6 +180,12 @@ namespace LegacyTest.Models
                 entity.ToTable("AnswerPerson");
 
                 entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.HasOne(d => d.IdQuestionNavigation)
+                    .WithMany(p => p.AnswerPeople)
+                    .HasForeignKey(d => d.IdQuestion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AnswerPerson_Question");
             });
 
             modelBuilder.Entity<CharacterizationByCompany>(entity =>
@@ -250,6 +256,10 @@ namespace LegacyTest.Models
                 entity.Property(e => e.CommercialReg)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TypeReg)
+                  .HasMaxLength(20)
+                  .IsUnicode(false);
             });
 
             modelBuilder.Entity<Criterion>(entity =>

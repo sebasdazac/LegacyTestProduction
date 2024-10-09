@@ -14,11 +14,11 @@
     <meta name="author" content="" />
     <title> Legacy Test</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="~/css/legacy-bootstrap.css" rel="stylesheet" />
     <link href="~/css/legacy-color.css" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -26,267 +26,483 @@
         .text-justify {
             text-align: justify;
         }
-
-        .new-page {
-            page-break-before: always;
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
         }
+
+        html {
+            font-size: 0.8rem;
+        }
+
+        /* Cada página */
+        .frontpage {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño exacto de A4 */
+            background-image: url('@Url.Content("~/img/brochure1.svg")');
+            background-size: 215.9mm 279.4mm; /* Escalar SVG al tamaño exacto de A4 */
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura que el fondo se repita en cada página */
+        }
+
+        /* Cada página */
+        .table-contents {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño exacto de A4 */
+            background-image: url('@Url.Content("~/img/brochure2.svg")');
+            background-size: 215.9mm 279.4mm; /* Escalar SVG al tamaño exacto de A4 */
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura que el fondo se repita en cada página */
+        }
+
+
+        .content-frontpage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 150mm 10mm 25mm 10mm;
+            z-index: 1; /* Para superponer el contenido al fondo */
+        }
+
+        .content-table {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 100mm 15mm 25mm 40mm;
+            z-index: 1; /* Para superponer el contenido al fondo */
+        }
+
+
+
+        .page3 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure3.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+
+        .page4 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure4.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+        .page5 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure5.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+        .page6 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure6.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+        .page8 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure8.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+        .page9 {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure9.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+
+
+
+        .page {
+            position: relative;
+            width: 215.9mm;
+            height: 279.4mm; /* Tamaño A4 */
+            background-image: url('@Url.Content("~/img/brochure.svg")');
+            background-size: 215.9mm 279.4mm;
+            background-repeat: no-repeat;
+            background-position: center;
+            page-break-after: always; /* Asegura el mismo fondo en cada página */
+        }
+
+        /* Asegurar que el contenido tenga márgenes */
+        .content {
+            position: relative;
+            padding: 40mm 15mm 40mm 40mm;
+            z-index: 1;
+            box-sizing: border-box; /* Asegura que los márgenes no se excedan */
+        }
+
 
         .avoid-break {
             page-break-inside: avoid;
         }
 
-
-        body {
-            background-color: white !important;
-            font-size: 0.65rem !important;
-        }
-
-        .container {
-            background-color: white !important;
-        }
-
-        .table th, .table td {
-            vertical-align: middle;
-            padding: 5px; /* Ajusta el padding según tus necesidades */
-        }
-
-        .progress {
-            margin: 0 auto;
-            width: 80%; /* Ajusta el ancho según tus necesidades */
-        }
-
-        .progress-bar {
-            transition: width 0.6s ease;
-        }
-
-        .rectangle.yellow {
-            background-color: #f9dd7a;
-        }
-
-        .rectangle.cyan {
-            background-color: #8fd6cb;
-        }
-
-        .rectangle.pink {
-            background-color: #f78da7;
-        }
-
-        .rectangle.blue {
-            background-color: #71c3e3;
-        }
     </style>
 
-    <div class="bg-blue2 mb-4 p-2">
-        <h6 class="text-center text-white fw-bold ">
+    <div class="frontpage">
+        <div class="content-frontpage container-fluid d-flex flex-column" style="min-height: 100vh;">
+            <div class="row justify-content-center mt-5">
+                <div class="col-12 text-center">
+                    <h2 style="line-height: 1.5; max-width: 100mm; margin: 0 auto;" class="blue2 fw-bold">@Model.Form.NameForm</h2>
+                    <p class="text-white">@DateTime.Now.ToString("yyyy/MM/dd")</p>
+                </div>
+            </div>
+            <div class="row mt-auto">
+                <div class="col-12 text-end">
+                    <h3 style="line-height: 1.25; max-width: 100mm; margin-left: auto;" class="fw-bold blue2">EMPRESA DEMO</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-contents">
+        <div class="content-table container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <p class="blue2 fw-bold fs-2 ">1. Definición Formulario: @Model.Form.NameForm</p>
+                    <p class="blue2 fw-bold fs-2 ">2. Diagnóstico de la empresa, cuadros y resumen</p>
+                    <p class="blue2 fw-bold fs-2 ">3. Efectos y Recomendaciones</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page3"></div>
+    <div class="page4"></div>
+    <div class="page5"></div>
+    <div class="page6"></div>
+
+
+    @{
+        // Declaramos las variables fuera de cualquier bloque de código HTML
+        int rowsPerPage = 3; // Número de filas por página
+        int totalRows = Model.Scales.Count(); // Total de filas en el modelo
+        int currentPage = 0; // Página actual
+        int remainingRows = totalRows; // Número de filas restantes
+    }
+
+    <div class="page">
+        <h6 class="fw-bold ">
             @Model.Form.NameForm
         </h6>
-    </div>
-
-
-    <div class="row mb-2">
-        <div class="col-md-12">
-            <p class="text-justify">@Model.Form.DescriptionReport</p>
-        </div>
-    </div>
-
-    <div class="row mb-1">
-        <div class="col-md-12">
-            <table class="table table-bordered">
-                <thead class="text-white bg-blue2">
-                    <tr>
-                        <th class="text-center w-25" scope="col">@Model.Scales.Distinct().Select(x => x.Title.ToUpper()).FirstOrDefault()</th>
-                        <th class="text-center w-25" scope="col">DESCRIPCIÓN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var scale in @Model.Scales)
-                    {
-                        <tr>
-                            <td class="text-justify w-25">@scale.Category</td>
-                            <td class="text-justify w-75">@scale.Description</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row bg-blue3 mb-2 p-2">
-                <h6 class="text-center text-white fw-bold ">
-                    Diagnóstico Actual
-                </h6>
+        <div class="content container-fluid">
+            <!-- Contenido específico de la primera página -->
+            @* <div class="row">
+            <div class="col-12">
+            <div class="bg-blue2 mb-4 p-2">
+            <h6 class="text-center text-white fw-bold ">
+            @Model.Form.NameForm
+            </h6>
             </div>
-            <div class="container-fluid">
-                <div class="row mt-3 mb-3">
-                    <div class="col-5">
-                        <div class="row mb-2">
-                            <div class="col-md-12 d-flex justify-content-center align-items-center">
-                                <div class="card w-100 border p-2">
-                                    <div class="card-header">
-                                        <table class="table table-borderless text-center mb-0">
-                                            <tr>
-                                                <td class="rectangle yellow w-25">ÚTOPICA</td>
-                                                <td class="rectangle cyan w-25">IDEAL</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="rectangle pink w-25">CRÍTICA</td>
-                                                <td class="rectangle blue w-25">ASTUTA</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas class="chart w-100" id="myChart1" style="height:45vh;"></canvas>
-                                    </div>
+            </div>
+            </div> *@
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="row mb-2">
-                            <div class="col-md-12 d-flex justify-content-center align-items-center">
-                                <div class="card w-100 border">
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" class="col-2"></th>
-                                                    <th scope="col" class="col-5 text-center">Direccionamiento</th>
-                                                    <th scope="col" class="col-5 text-center">Confianza</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">Empresa</th>
-                                                    <td>
-                                                        <div class="progress" id="companyDirection" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress" id="companyTrust" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Propiedad</th>
-                                                    <td>
-                                                        <div class="progress" id="propertyDirection" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress" id="propertyTrust" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Familia</th>
-                                                    <td>
-                                                        <div class="progress" id="familyDirection" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="progress" id="familyTrust" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                            <div class="progress-bar" style="width: 0%"></div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-12">
-                                <div id="effectsAndRecommendationsAlert1" class="w-100"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row mb-2">
+                <div class="col-12">
+                    <p class="text-justify">@Model.Form.DescriptionReport</p>
+                </div>
+            </div>
+
+            <!-- Tabla en la primera página -->
+            <div class="row mb-1">
+                <div class="col-12">
+                    @if (Model.Scales.Count() > 0)
+                    {
+                        <table class="table table-bordered">
+                            <thead class="text-white bg-blue2">
+                                <tr>
+                                    <th class="text-center w-25">@Model.Scales.Distinct().Select(x => x.Title.ToUpper()).FirstOrDefault()</th>
+                                    <th class="text-center w-75" scope="col">DESCRIPCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var scale in @Model.Scales.Take(rowsPerPage)) // Solo las primeras filas
+                                {
+                                    <tr>
+                                        <td class="w-25 p-3">@scale.Category</td>
+                                        <td class="text-justify w-75 p-3">@scale.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Crear nuevas páginas si la tabla excede las filas de la primera página -->
+    @{
+        remainingRows -= rowsPerPage; // Restamos las filas ya mostradas
+        currentPage++; // Pasamos a la siguiente página
+    }
 
-  
+    @while (remainingRows > 0)
+    {
+        <div class="page">
+            <div class="content container-fluid">
+                <!-- Tabla para las páginas siguientes -->
+                <div class="row mb-1">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="text-white bg-blue2">
+                                <tr>
+                                    <th class="text-center w-25">@Model.Scales.Distinct().Select(x => x.Title.ToUpper()).FirstOrDefault()</th>
+                                    <th class="text-center w-75" scope="col">DESCRIPCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var scale in @Model.Scales.Skip(currentPage * rowsPerPage).Take(rowsPerPage))
+                                {
+                                    <tr>
+                                        <td class="w-25 p-3">@scale.Category</td>
+                                        <td class="text-justify w-75 p-3">@scale.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="row new-page">
-        <div class="col-md-12">
-            <div class="bg-blue3 mb-3 p-2">
-                <h6 class="text-center text-white fw-bold ">
-                    Efectos y Recomendaciones
-                </h6>
+        remainingRows -= rowsPerPage; // Restamos las filas mostradas
+        currentPage++; // Incrementamos la página actual
+
+        if (remainingRows > 0)
+        {
+            <div style="page-break-after: always;"></div> <!-- Forzar salto de página -->
+        }
+    }
+
+
+
+
+
+    <div class="page">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-blue2 mb-4 p-2">
+                        <h6 class="text-center text-white fw-bold ">
+                            Diagnóstico Actual
+                        </h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    @{
+                        string path = $"~/Views/Pdf/_chart{@Model.Form.Id}.cshtml";
+                        @Html.Partial(path)
+                    }
+                </div>
             </div>
         </div>
     </div>
 
+    @*
+    <div class="page">
+    <div class="content container-fluid">
+    <div class="row">
+    <div class="col-12">
+    <div class="bg-blue3 mb-3 p-2">
+    <h6 class="text-center text-white fw-bold ">
+    Efectos y Recomendaciones
+    </h6>
+    </div>
+    </div>
+    </div>
     @foreach (var item in Model.CombinedResults)
     {
-        <div class="row mb-3 avoid-break">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header  bg-blue1 text-white fs-6  fw-bold">
-                        @item.Characterization
-                        <div class="progress mt-2" id="progress-@item.IdCharacterization" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" hidden>
-                            <div class="progress-bar" style="width: 25%">25%</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header bg-light-gray  fw-bold">
-                                        Efectos
-                                    </div>
-                                    <div class="card-body">
-                                        @foreach (var effect in item.Effects)
-                                        {
-                                            <div class="effect-item text-justify">
-                                                <strong>
-                                                    @effect.EffectType
-                                                </strong>
-                                                <br />
-                                                <strong>Descripción:</strong> @effect.EffectDescription
-                                            </div>
-                                            <hr />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header bg-blue text-white  fw-bold">
-                                        Recomendaciones
-                                    </div>
-                                    <div class="card-body">
-                                        @foreach (var recommendation in item.Recommendations)
-                                        {
-                                            <div class="recommendation-item text-justify">
-                                                <strong> @recommendation.RecommendationType</strong> <br />
-                                                <strong>Descripción:</strong> @recommendation.RecommendationDescription
-                                            </div>
-                                            <hr />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+    <div class="row mb-3 avoid-break">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-header  bg-blue1 text-white fs-6  fw-bold">
+    @item.Characterization
+    <div class="progress mt-2" id="progress-@item.IdCharacterization" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" hidden>
+    <div class="progress-bar" style="width: 25%">25%</div>
+    </div>
+    </div>
+    <div class="card-body">
+    <div class="row mb-2">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-header bg-light-gray  fw-bold">
+    Efectos
+    </div>
+    <div class="card-body">
+    @foreach (var effect in item.Effects)
+    {
+    <div class="effect-item text-justify">
+    @effect.EffectDescription
+    </div>
+    <hr />
+    }
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row mb-2">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-header bg-blue text-white  fw-bold">
+    Recomendaciones
+    </div>
+    <div class="card-body">
+    @foreach (var recommendation in item.Recommendations)
+    {
+    <div class="recommendation-item text-justify">
+    @recommendation.RecommendationDescription
+    </div>
+    <hr />
+    }
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    }
+
+    </div>
+    </div>
+    *@
+
+    @{
+        int cardsPerSet = 2; // Número de cards por página
+        int totalCombinedCards = Model.CombinedResults.Count();
+    }
+
+    @for (int j = 0; j < totalCombinedCards; j += cardsPerSet)
+    {
+        <!-- Nueva página -->
+        <div class="page">
+            <div class="content container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bg-blue3 mb-3 p-2">
+                            <h6 class="text-center text-white fw-bold">
+                                Efectos y Recomendaciones
+                            </h6>
                         </div>
                     </div>
                 </div>
+
+                <!-- Mostrar los cards de CombinedResults -->
+                @foreach (var item in Model.CombinedResults.Skip(j).Take(cardsPerSet))
+                {
+                    <div class="row mb-3 avoid-break">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-blue1 text-white fs-6 fw-bold">
+                                    @item.Characterization
+                                    <div class="progress mt-2" id="progress-@item.IdCharacterization" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" hidden>
+                                        <div class="progress-bar" style="width: 25%">25%</div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header bg-light-gray fw-bold">
+                                                    Efectos
+                                                </div>
+                                                <div class="card-body">
+                                                    @foreach (var effect in item.Effects)
+                                                    {
+                                                        <div class="effect-item text-justify">
+                                                            @effect.EffectDescription
+                                                        </div>
+                                                        <hr />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header bg-blue text-white fw-bold">
+                                                    Recomendaciones
+                                                </div>
+                                                <div class="card-body">
+                                                    @foreach (var recommendation in item.Recommendations)
+                                                    {
+                                                        <div class="recommendation-item text-justify">
+                                                            @recommendation.RecommendationDescription
+                                                        </div>
+                                                        <hr />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!-- Salto de página si hay más cards que mostrar -->
+                @if (j + cardsPerSet < totalCombinedCards)
+                {
+                    <div style="page-break-after: always;"></div>
+                }
             </div>
         </div>
     }
+
+
+    <div class="page8"></div>
+
+    <div class="page9"></div>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
@@ -295,224 +511,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
     <script src="~/js/main.js"></script>
     <script>
-
-        var canvas1 = document.getElementById('myChart1');
-        var ctx1 = canvas1.getContext('2d');
-
-        const labelsY = ['CFB', 'CPB', 'CEB', 'CFA', 'CPA', 'CEA'];
-        const labelsX = ['DEB', 'DPB', 'DFB', 'DEA', 'DPA', 'DFA'];
-
-        const visualLabelsY = ['Familia', 'Patrimonio', 'Empresa', 'Familia', 'Patrimonio', 'Empresa'];
-        const visualLabelsX = ['Empresa', 'Patrimonio', 'Familia', 'Empresa', 'Patrimonio', 'Familia'];
-
-        function ConfigMatrix(data, labelsX, labelsY) {
-            let config = {
-                type: 'matrix',
-                data: data,
-                options: {
-                    animation: false,
-                    pointLabel: {
-                        display: false
-                    },
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: false,
-                        datalabels: {
-                            anchor: 'center',
-                            align: 'center',
-                            formatter: (value, context) => {
-                                return context.dataset.label || '';
-                            },
-                            color: '#ffff',
-                            labels: {
-                                value: {
-                                    color: 'black'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            enabled: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            type: 'category',
-                            labels: labelsX,
-                            ticks: {
-                                display: true,
-                                callback: function (value, index) {
-                                    return visualLabelsX[index];
-                                },
-
-                                maxRotation: 90,
-                                minRotation: 90
-                            },
-                            grid: {
-                                display: false
-                            }
-                        },
-                        x2: {
-                            type: 'category',
-                            display: true,
-                            position: 'bottom',
-                            labels: ['Bajo', 'Alto'],
-                            title: {
-                                display: true,
-                                text: 'Direccionamiento Estrat\u00E9gico',
-                                font: {
-                                    size: 16,
-                                    weight: 'bold'
-                                }
-                            },
-                            ticks: {
-                                display: true
-                            },
-                            grid: {
-                                display: false
-                            }
-                        },
-                        y: {
-                            type: 'category',
-                            labels: labelsY,
-                            offset: true,
-                            ticks: {
-                                display: true,
-                                callback: function (value, index) {
-                                    return visualLabelsY[index];
-                                }
-                            },
-                            grid: {
-                                display: false
-                            }
-                        },
-                        y2: {
-                            title: {
-                                display: true,
-                                text: 'Confianza',
-                                font: {
-                                    size: 16,
-                                    weight: 'bold'
-                                }
-                            },
-                            type: 'category',
-                            labels: ['Baja', 'Alta'],
-                            offset: true,
-                            ticks: {
-                                display: true
-                            },
-                            grid: {
-                                display: false
-                            }
-                        }
-                    },
-
-                },
-
-            };
-            return config;
-        }
-
-        const data1 = {
-            datasets: [
-                {
-                    label: '',
-                    data: [
-                        { x: 'DEB', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DEB', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DEB', y: 'CFA', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CFA', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CFA', v: '35', ms: '' },
-                        { x: 'DEA', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CEA', v: '35', ms: '' },
-                        { x: 'DEA', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CPA', v: '35', ms: '' },
-                        { x: 'DEA', y: 'CFA', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CFA', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CFA', v: '35', ms: '' },
-
-                        { x: 'DEB', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DEB', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DEB', y: 'CFB', v: '35', ms: '' },
-                        { x: 'DPB', y: 'CFB', v: '35', ms: '' },
-                        { x: 'DFB', y: 'CFB', v: '35', ms: '' },
-
-                        { x: 'DEA', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CEB', v: '35', ms: '' },
-                        { x: 'DEA', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CPB', v: '35', ms: '' },
-                        { x: 'DEA', y: 'CFB', v: '35', ms: '' },
-                        { x: 'DPA', y: 'CFB', v: '35', ms: '' },
-                        { x: 'DFA', y: 'CFB', v: '35', ms: '' }
-                    ],
-                    backgroundColor(context) {
-                        const value = context.dataset.data[context.dataIndex].v;
-                        const alpha = value / 50;
-
-                        const colors = [
-                            `rgba(255, 206, 86, ${alpha})`,  // amarillo
-                            `rgba(75, 192, 192, ${alpha})`,  // verde
-                            `rgba(255, 99, 132, ${alpha})`,  // rojo
-                            `rgba(54, 162, 235, ${alpha})`   // azul
-                        ];
-
-                        const colorIndex = Math.floor(context.dataIndex / 9) % colors.length;
-
-                        return colors[colorIndex];
-                    },
-                    borderColor(context) {
-                        const value = context.dataset.data[context.dataIndex].v;
-                        const alpha = (value - 5) / 40;
-
-                    },
-                    borderWidth: 1,
-                    width: ({ chart }) => (chart.chartArea || {}).width / 6 - 1,
-                    height: ({ chart }) => (chart.chartArea || {}).height / 6 - 1,
-                    order: 1
-                },
-            ]
-        };
-
-
-        $.ajax({
-            type: "GET",
-            url: "/CharacterizationByCompany/GetChart1?param="+@Model.IdCompany,
-            success: function (data) {
-                data.forEach(item => {
-                    data1.datasets.push({
-                        label: item.label.charAt(0),
-                        data: [{ x: item.x, y: item.y, r: 10 }],
-                        type: 'bubble',
-                        borderColor: 'rgb(0,0,255)',
-                        backgroundColor: 'rgb(255,255,255)'
-                    });
-                });
-                const conf1 = ConfigMatrix(data1, labelsX, labelsY);
-                var myChart = new Chart(ctx1, conf1);
-
-                updateProgress(companyDirection, data[0].value1);
-                updateProgress(companyTrust, data[0].value2);
-                updateProgress(propertyDirection, data[1].value1);
-                updateProgress(propertyTrust, data[1].value2);
-                updateProgress(familyDirection, data[2].value1);
-                updateProgress(familyTrust, data[2].value2);
-    
-        });
-
+        var param = @Model.IdCompany
     </script>
+    <script src="~/js/pdf/chart1.js"></script>
+
 
 
 </body>

@@ -1,7 +1,6 @@
 ﻿<!-- Main page content-->
 <div class="container-xl px-4">
     <div class="text-center my-10">
-      
     </div>
     <!-- Detailed pricing example-->
     <div class="pricing-detailed">
@@ -11,9 +10,9 @@
                 <div class="card text-center border-0">
                     <div class="card-header bg-transparent justify-content-center py-4"><h5 class="text-primary mb-0">Punto de Partida Empresarial</h5></div>
                     <div class="card-body p-5">
-                       
+
                         <div class="mb-4">
-                            <span class="display-4 fw-bold text-dark">$ - </span>                          
+                            <span class="display-4 fw-bold text-dark">$ - </span>
                         </div>
                         <ul class="list-unstyled">
                             <li class="d-flex align-items-center justify-content-center mb-3">
@@ -31,8 +30,8 @@
                         </ul>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-center">
-                      PLAN ACTUAL
-                       
+                        PLAN ACTUAL
+
                     </div>
                 </div>
             </div>
@@ -41,7 +40,7 @@
                 <div class="card bg-dark text-center pricing-detailed-behind">
                     <div class="card-header justify-content-center py-4"><h5 class="mb-0 text-white">GRATUITO</h5></div>
                     <div class="card-body text-white-50 p-5">Este breve estudio está diseñado para ayudarte a identificar y abordar estas trampas, asegurando la sostenibilidad y el éxito de tu negocio y tu familia a largo plazo</div>
-                    <div class="card-footer bg-gray-800 text-white d-flex align-items-center justify-content-center" >                   
+                    <div class="card-footer bg-gray-800 text-white d-flex align-items-center justify-content-center">
                     </div>
                 </div>
             </div>
@@ -97,28 +96,98 @@
                                     <span class="h1">$ -</span>
                                 </div>
                                 <p class="small">Descubre las trampas que te impiden avanzar</p>
-                                <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div>
+                               @*  <div class="d-grid"><button class="btn btn-primary" type="button" disabled>Escoger Plan</button></div> *@
                             </td>
                             <td class="px-2">
                                 <div class="text-dark mb-2">
                                     <span class="h1">$800.00</span>
                                 </div>
                                 <p class="small">5% en programas de formacion de <br /> Legacy School of Ownership-LSO</p>
-                                <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div>
+                                <!-- =====================================================================
+                                 ///////////   Este es su botón de Botón de pago ePayco   ///////////
+                                ===================================================================== -->
+                                <form>
+                                    <script src='https://checkout.epayco.co/checkout.js'
+                                            data-epayco-key='fe6e6cc0540cbf6bbf47e09f558e5d43'
+                                            class='epayco-button'
+                                            data-epayco-amount='8'
+                                            data-epayco-tax='0.00'
+                                            data-epayco-tax-ico='0.00'
+                                            data-epayco-tax-base='8'
+                                            data-epayco-name='Suite de Exploración Empresarial'
+                                            data-epayco-description='Suite de Exploración Empresarial'
+                                            data-epayco-currency='usd'
+                                            data-epayco-country='CO'
+                                            data-epayco-test='true'
+                                            data-epayco-external='false'
+                                            data-epayco-response='http://localhost:5000/Epayco/Response'
+                                            data-epayco-confirmation='http://localhost:5000/Epayco/Confirmation'
+                                            data-epayco-button='https://multimedia.epayco.co/dashboard/btns/btn5.png'>
+
+                                    </script>
+                                </form> <!-- ================================================================== -->
+                                @*  <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div> *@
                             </td>
                             <td class="px-2">
                                 <div class="text-dark mb-2">
                                     <span class="h1">$1600.00</span>
                                 </div>
                                 <p class="small">10% en programas de formacion de <br />  Legacy School of Ownership-LSO.</p>
-                                <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div>
+                                @* <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div> *@
+                                <!-- =====================================================================
+                                 ///////////   Este es su botón de Botón de pago ePayco   ///////////
+                                ===================================================================== -->
+                                <form>
+                                    <script src='https://checkout.epayco.co/checkout.js'
+                                            data-epayco-key='fe6e6cc0540cbf6bbf47e09f558e5d43'
+                                            class='epayco-button'
+                                            data-epayco-amount='16'
+                                            data-epayco-tax='0.00'
+                                            data-epayco-tax-ico='0.00'
+                                            data-epayco-tax-base='16'
+                                            data-epayco-name='Suite de Evaluación Empresarial'
+                                            data-epayco-description='Suite de Evaluación Empresarial'
+                                            data-epayco-currency='usd'
+                                            data-epayco-country='CO'
+                                            data-epayco-test='true'
+                                            data-epayco-external='false'
+                                            data-epayco-response='http://legacy-test.com/Company/Plans'
+                                            data-epayco-confirmation='http://legacy-test.com/Company/Plans'
+                                            data-epayco-button='https://multimedia.epayco.co/dashboard/btns/btn5.png'>
+
+                                    </script>
+                                </form> <!-- ================================================================== -->
                             </td>
                             <td class="px-2">
                                 <div class="text-dark mb-2">
                                     <span class="h1">$2390.00</span>
                                 </div>
                                 <p class="small">25% en programas de formacion de <br />Legacy School of Ownership-LSO.</p>
-                                <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div>
+                                @* <div class="d-grid"><button class="btn btn-primary" type="button">Escoger Plan</button></div> *@
+
+                                <!-- =====================================================================
+                                 ///////////   Este es su botón de Botón de pago ePayco   ///////////
+                                ===================================================================== -->
+                                <form>
+                                    <script src='https://checkout.epayco.co/checkout.js'
+                                            data-epayco-key='fe6e6cc0540cbf6bbf47e09f558e5d43'
+                                            class='epayco-button'
+                                            data-epayco-amount='24'
+                                            data-epayco-tax='0.00'
+                                            data-epayco-tax-ico='0.00'
+                                            data-epayco-tax-base='24'
+                                            data-epayco-name='Suite Integral de Diagnóstico'
+                                            data-epayco-description='Suite Integral de Diagnóstico'
+                                            data-epayco-currency='usd'
+                                            data-epayco-country='CO'
+                                            data-epayco-test='true'
+                                            data-epayco-external='false'
+                                            data-epayco-response='http://legacy-test.com/Company/Plans'
+                                            data-epayco-confirmation='http://legacy-test.com/Company/Plans'
+                                            data-epayco-button='https://multimedia.epayco.co/dashboard/btns/btn5.png'>
+
+                                    </script>
+                                </form> <!-- ================================================================== -->
                             </td>
                         </tr>
 

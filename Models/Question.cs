@@ -7,6 +7,7 @@ namespace LegacyTest.Models
     {
         public Question()
         {
+            AnswerPeople = new HashSet<AnswerPerson>();
             AnswerCompanies = new HashSet<AnswerCompany>();
             Answers = new HashSet<Answer>();
             InverseQuestionParentNavigation = new HashSet<Question>();
@@ -25,6 +26,8 @@ namespace LegacyTest.Models
         public virtual Dimension? IdDimensionNavigation { get; set; }
         public virtual Question? QuestionParentNavigation { get; set; }
         public virtual ICollection<AnswerCompany> AnswerCompanies { get; set; }
+
+        public virtual ICollection<AnswerPerson> AnswerPeople { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
         public virtual ICollection<Question> InverseQuestionParentNavigation { get; set; }
     }

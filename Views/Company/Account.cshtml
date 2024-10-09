@@ -1,183 +1,133 @@
-﻿<header class="card card-waves">
-    <div class="card-body px-5 pt-5 pb-0">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-lg-6">
-                <p class="lead mb-4">
-                    Potencia tu experiencia como usuario registrado en Legacy Test! Aquí, tienes la oportunidad de mantener al día toda tu información.
-                    <br />
-                <p class="lead mb-4">
-                    Actualiza tus datos y aprovecha al máximo tu participación!
-                </p>
-            </div>
-            <div class="col-lg-4"><img class="img-fluid" src="~/assets/img/illustrations/at-work.svg" style="min-height:30vh" /></div>
-        </div>
-    </div>
-</header>
-
-<header class="page-header page-header-dark bg-gradient-primary-to-secondary ">
-    <div class="container-xl px-4">
-        <div class="page-header-content">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-auto ">
-                    <div class="page-header-title">
-                        <div class="page-header-icon"><i data-feather="layers"></i></div>
-                        Perfil de Usuario
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Contenido principal de la página -->
-<div class="container-xl px-4 mt-4">
-    <!-- Navegación de la página de la cuenta -->
-    <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tus Datos </a>
-        <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Seguridad</a>
-    </nav>
-    <hr class="mt-0 mb-4" />
-
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-            <div class="row">
-                <div class="col-xl-4">
-                    <!-- Tarjeta de imagen de perfil -->
-                    <div class="card mb-4 mb-xl-0">
-                        <div class="card-header">Foto de Perfil</div>
-                        <div class="card-body text-center">
-                            <!-- Imagen de perfil -->
-                            <img class="img-account-profile rounded-circle mb-2" src="~/assets/img/illustrations/profiles/profile-3.png" alt="" />
-                            <!-- Mensaje de ayuda para la imagen de perfil -->
-                            <div class="small font-italic text-muted mb-4">JPG o PNG no mayores a 5 MB</div>
-                            <!-- Botón para subir nueva imagen de perfil -->
-                            <button class="btn btn-primary" type="button">Subir nueva imagen</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-8">
-                    <!-- Tarjeta de detalles de la cuenta -->
-                    <div class="card mb-4">
-                        <div class="card-header">Detalles de la Cuenta</div>
-                        <div class="card-body">
-                            <form>
-                                <!-- Grupo de formulario (nombre de usuario) -->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="inputUsername">Nombre de Usuario (cómo aparecerá tu nombre a otros usuarios en el sitio)</label>
-                                    <input class="form-control" id="inputUsername" type="text" placeholder="Ingresa tu nombre de usuario" value="nombre_de_usuario" />
-                                </div>
-                                <!-- Fila del formulario -->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Grupo de formulario (nombre) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName">Nombre</label>
-                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Ingresa tu nombre" value="Valerie" />
-                                    </div>
-                                    <!-- Grupo de formulario (apellido) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Apellido</label>
-                                        <input class="form-control" id="inputLastName" type="text" placeholder="Ingresa tu apellido" value="Luna" />
-                                    </div>
-                                </div>
-                                <!-- Fila del formulario -->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Grupo de formulario (nombre de la organización) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputOrgName">Nombre de la Organización</label>
-                                        <input class="form-control" id="inputOrgName" type="text" placeholder="Ingresa el nombre de tu organización" value="Start Bootstrap" />
-                                    </div>
-                                    <!-- Grupo de formulario (ubicación) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLocation">Ubicación</label>
-                                        <input class="form-control" id="inputLocation" type="text" placeholder="Ingresa tu ubicación" value="San Francisco, CA" />
-                                    </div>
-                                </div>
-                                <!-- Grupo de formulario (dirección de correo electrónico) -->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="inputEmailAddress">Dirección de Correo Electrónico</label>
-                                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Ingresa tu dirección de correo electrónico" value="nombre@ejemplo.com" />
-                                </div>
-                                <!-- Fila del formulario -->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Grupo de formulario (número de teléfono) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputPhone">Número de Teléfono</label>
-                                        <input class="form-control" id="inputPhone" type="tel" placeholder="Ingresa tu número de teléfono" value="555-123-4567" />
-                                    </div>
-                                    <!-- Grupo de formulario (cumpleaños) -->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputBirthday">Fecha de Nacimiento</label>
-                                        <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Ingresa tu fecha de nacimiento" value="10/06/1988" />
-                                    </div>
-                                </div>
-                                <!-- Botón para guardar cambios -->
-                                <button class="btn btn-primary" type="button">Guardar cambios</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Tarjeta para cambiar la contraseña -->
-                    <div class="card mb-4">
-                        <div class="card-header">Cambiar Contraseña</div>
-                        <div class="card-body">
-                            <form>
-                                <!-- Grupo de formulario (contraseña actual) -->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="currentPassword">Contraseña Actual</label>
-                                    <input class="form-control" id="currentPassword" type="password" placeholder="Ingresa la contraseña actual" />
-                                </div>
-                                <!-- Grupo de formulario (nueva contraseña) -->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="newPassword">Nueva Contraseña</label>
-                                    <input class="form-control" id="newPassword" type="password" placeholder="Ingresa la nueva contraseña" />
-                                </div>
-                                <!-- Grupo de formulario (confirmar contraseña) -->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="confirmPassword">Confirmar Contraseña</label>
-                                    <input class="form-control" id="confirmPassword" type="password" placeholder="Confirmar nueva contraseña" />
-                                </div>
-                                <button class="btn btn-primary" type="button">Guardar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <!-- Tarjeta para autenticación de dos factores -->
-                    <div class="card mb-4">
-                        <div class="card-header">Autenticación de Dos Factores</div>
-                        <div class="card-body">
-                            <p>Añade otro nivel de seguridad a tu cuenta habilitando la autenticación de dos factores. Te enviaremos un mensaje de texto para verificar tus intentos de inicio de sesión en dispositivos y navegadores no reconocidos.</p>
-                            <form>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor" checked />
-                                    <label class="form-check-label" for="twoFactorOn">Activado</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="twoFactorOff" type="radio" name="twoFactor" />
-                                    <label class="form-check-label" for="twoFactorOff">Desactivado</label>
-                                </div>
-                                <div class="mt-3">
-                                    <label class="small mb-1" for="twoFactorSMS">Número de SMS</label>
-                                    <input class="form-control" id="twoFactorSMS" type="tel" placeholder="Ingresa un número de teléfono" value="555-123-4567" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Tarjeta para eliminar la cuenta -->
-                    <div class="card mb-4">
-                        <div class="card-header">Eliminar Cuenta</div>
-                        <div class="card-body">
-                            <p>Eliminar tu cuenta es una acción permanente y no se puede deshacer. Si estás seguro de que deseas eliminar tu cuenta, selecciona el botón a continuación.</p>
-                            <button class="btn btn-danger-soft text-danger" type="button">Entiendo, eliminar mi cuenta</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+﻿<div class="banner-section-right" style="background-image: url('/img/questions-min.jpg');">
+    <div class="col-lg-6">
+        <p class="lead mb-4">
+            Potencia tu experiencia como usuario registrado en Legacy Test! Aquí, tienes la oportunidad de mantener al día toda tu información.
+        </p>
+        <p class="lead mb-4">
+            Actualiza tus datos y aprovecha al máximo tu participación!
+        </p>
     </div>
 </div>
+<div class="row bg-blue2 pb-5">
+    <div class="col-md-12 p-5">
+        <h3 class="fw-bolder text-white"><i class="bi bi-pencil-square me-2"></i>Editar tu Cuenta</h3>
+    </div>
+</div>
+<div class="container px-4 mt-n10">
+    <div class="card card-container p-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card shadow text-center h-100 d-flex flex-column">
+                            <div class="card-body p-3">
+                                <img src="~/img/avatar-min.jpg" class="rounded-circle img-fluid" alt="Imagen Circular" width="150" height="150" id="profileImage">
+                            </div>
+                            <div class="card-footer">
+                                <input type="file" id="imageInput" accept="image/*" class="d-none">
+                                <button class="btn btn-primary" onclick="document.getElementById('imageInput').click()"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cambiar Imagen">
+                                    <i class="bi bi-camera"></i>
+                                </button>
+                                <button class="btn btn-warning" onclick="removeImage()"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar Imagen">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card shadow h-100 d-flex flex-column">
+                            <div class="card-header">Eliminar cuenta</div>
+                            <div class="card-body text-center">
+                                <div class="card-body p-3">
+                                    <p class="text-justify">Eliminar tu cuenta es una acción permanente y no se puede deshacer. 
+                                        Si estás seguro de que deseas eliminar tu cuenta, selecciona el botón a continuación.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-warning" type="button" id="btnDeleteAccount">Eliminar mi cuenta</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card shadow h-100 d-flex flex-column">
+                            <form id="formUpdateProfile" class="d-flex flex-column h-100">
+                                <div class="card-header">Detalles de la Cuenta</div>
+                                <div class="card-body flex-grow-1 p-3">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputFirstName">Nombre</label>
+                                            <input class="form-control" id="inputFirstName" type="text" placeholder="Ingresa tu nombre" required />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputLastName">Apellido</label>
+                                            <input class="form-control" id="inputLastName" type="text" placeholder="Ingresa tu apellido" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <label class="small mb-1" for="inputEmailAddress">Dirección de Correo Electrónico</label>
+                                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Ingresa tu dirección de correo electrónico" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer mt-auto">
+                                    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card shadow h-100 d-flex flex-column">
+                            <form id="formChangePassword">
+                                <div class="card-header">Cambiar Contraseña</div>
+                                <div class="card-body p-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="currentPassword">Contraseña Actual</label>
+                                                <input class="form-control" id="currentPassword" type="password" placeholder="Ingresa la contraseña actual" required />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="newPassword">Nueva Contraseña</label>
+                                                <input class="form-control" id="newPassword" type="password" placeholder="Ingresa la nueva contraseña" required />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="confirmPassword">Confirmar Contraseña</label>
+                                                <input class="form-control" id="confirmPassword" type="password" placeholder="Confirmar nueva contraseña" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="alert alert-primary" role="alert">
+                                                <p class="text-justify">
+                                                    La nueva contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/company.account.js"></script>
+}

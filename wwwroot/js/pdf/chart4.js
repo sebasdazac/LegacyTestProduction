@@ -4,19 +4,10 @@ var datasets4 = [];
 const colorsChart4 = generatePalette(10, 0.8);
 
 $.ajax({
-    type: "POST",
-    url: "/CharacterizationByCompany/GetChart4",
+    type: "GET",
+    url: "/CharacterizationByCompany/GetChart4?param=" + param, 
     success: function (data) {     
 
-
-        data.forEach(item => {
-            const chartElement = document.getElementById(`progress-${item.idCharacterization}`);
-            if (chartElement) {
-                chartElement.hidden = false;
-
-                updateProgress(chartElement, item.value1);
-            }
-        });
 
         const labels4 = data.map(item => item.label);
 
@@ -36,9 +27,13 @@ $.ajax({
             type: 'bar',
             data: data4,
             options: {
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
                 indexAxis: 'y', 
-                animation: true,
-                responsive: false, 
+                responsive: true, 
                 maintainAspectRatio: true,    
                 scales: {
                     x: {
@@ -97,8 +92,18 @@ $.ajax({
                 }               
             }
         };
-        new Chart(ctx4, config4);     
-        renderDimensionAccordion(data, 'effectsAndRecommendationsAlert4','value1', false);
+        new Chart(ctx4, config4);    
+
+
+        data.forEach(item => {
+            const chartElement = document.getElementById(`progress-${item.idCharacterization}`);
+            if (chartElement) {
+                chartElement.hidden = false;
+
+                updateProgress(chartElement, item.value1);
+            }
+        });
+
     }
 });
 

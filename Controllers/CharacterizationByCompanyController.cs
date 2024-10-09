@@ -49,12 +49,9 @@ namespace LegacyTest.Controllers
                     idCompany = long.Parse(param);
                 }
                 else
-                {                    
+                {
                     idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
                 }
-
-
-              
 
 
                 var data = await _context.CharacterizationByCompanies
@@ -72,7 +69,7 @@ namespace LegacyTest.Controllers
                     {
                         label = GetLabelCriterion1(x.CriterionText1),
                         x = x.CriterionText2 + x.IdClasification1.Substring(0, 1).ToUpper(),
-                        y = x.CriterionText1 + x.IdClasification2.Substring(0, 1).ToUpper(),                      
+                        y = x.CriterionText1 + x.IdClasification2.Substring(0, 1).ToUpper(),
                         text = x.IdClasification1,
                         idCharacterization = x.IdCharacterization,
                         characterization = x.Characterization,
@@ -105,12 +102,21 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart2()
+        public async Task<IActionResult> GetChart2(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                    .Include(x => x.IdCharacterizationNavigation)
@@ -121,7 +127,7 @@ namespace LegacyTest.Controllers
                             && x.IdCompany == idCompany)
                    .Select(x => new
                    {
-                       label = x.Characterization,                                          
+                       label = x.Characterization,
                        idCharacterization = x.IdCharacterization,
                        characterization = x.Characterization,
                        criterion1 = x.IdClasification1,
@@ -154,12 +160,21 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart3()
+        public async Task<IActionResult> GetChart3(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -186,19 +201,29 @@ namespace LegacyTest.Controllers
                 throw;
             }
 
-         
+
             catch (Exception e)
             {
                 throw;
             }
         }
 
-        public async Task<IActionResult> GetChart4()
+        public async Task<IActionResult> GetChart4(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -241,12 +266,21 @@ namespace LegacyTest.Controllers
             }
         }
 
-        public async Task<IActionResult> GetChart5()
+        public async Task<IActionResult> GetChart5(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                         .Include(x => x.IdCharacterizationNavigation)
@@ -266,7 +300,7 @@ namespace LegacyTest.Controllers
                                             recommendations = x.IdCharacterizationNavigation.CharacterizationRecomendations.Select(r => new { r.Recomendation, r.RecomendationType }).ToList() // Selecciona los campos necesarios de las recomendaciones
                                         })
                                         .ToListAsync();
-                                        
+
 
                 return Json(data);
             }
@@ -286,12 +320,21 @@ namespace LegacyTest.Controllers
             }
         }
 
-        public async Task<IActionResult> GetChart6()
+        public async Task<IActionResult> GetChart6(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                         .Include(x => x.IdCharacterizationNavigation)
@@ -350,12 +393,21 @@ namespace LegacyTest.Controllers
                 throw;
             }
         }
-        public async Task<IActionResult> GetChart7()
+        public async Task<IActionResult> GetChart7(string param = null)
         {
             try
             {
 
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -414,11 +466,20 @@ namespace LegacyTest.Controllers
             }
         }
 
-        public async Task<IActionResult> GetChart8()
+        public async Task<IActionResult> GetChart8(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -480,11 +541,20 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart9()
+        public async Task<IActionResult> GetChart9(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -545,11 +615,20 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart10()
+        public async Task<IActionResult> GetChart10(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -581,11 +660,11 @@ namespace LegacyTest.Controllers
                                                         .ThenInclude(x => x.IdDimensionNavigation)
                                                         .Where(x => listQuestions.Contains(x.IdQuestion))
                                                         .GroupBy(x => x.IdQuestionNavigation.IdDimensionNavigation.DimensionText)
-                                                        .Select(g => new
-                                                        {
-                                                            label = g.Key,
-                                                            averageValue = (int)Math.Round(g.Average(x => Math.Round((double)x.AverageQuestion / 5 * 100)))
-                                                        })
+                                                         .Select(g => new
+                                                         {
+                                                             label = g.Key,
+                                                             averageValue = (int)Math.Round(g.Average(x => Math.Round((double)x.AverageQuestion / 5 * 100)))
+                                                         })
                                                         .ToListAsync();
 
 
@@ -610,11 +689,20 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart11()
+        public async Task<IActionResult> GetChart11(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
 
                 var data = await _context.CharacterizationByCompanies
@@ -676,11 +764,20 @@ namespace LegacyTest.Controllers
 
 
 
-        public async Task<IActionResult> GetChart12()
+        public async Task<IActionResult> GetChart12(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                      .Include(x => x.IdCharacterizationNavigation)
@@ -722,11 +819,20 @@ namespace LegacyTest.Controllers
         }
 
 
-        public async Task<IActionResult> GetChart13()
+        public async Task<IActionResult> GetChart13(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -787,11 +893,20 @@ namespace LegacyTest.Controllers
         }
 
 
-        public async Task<IActionResult> GetChart14()
+        public async Task<IActionResult> GetChart14(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -852,13 +967,22 @@ namespace LegacyTest.Controllers
         }
 
 
-   
 
-        public async Task<IActionResult> GetChart15()
+
+        public async Task<IActionResult> GetChart15(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                      .Include(x => x.IdCharacterizationNavigation)
@@ -898,13 +1022,22 @@ namespace LegacyTest.Controllers
         }
 
 
-    
 
-        public async Task<IActionResult> GetChart16()
+
+        public async Task<IActionResult> GetChart16(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -965,11 +1098,20 @@ namespace LegacyTest.Controllers
         }
 
 
-        public async Task<IActionResult> GetChart17()
+        public async Task<IActionResult> GetChart17(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                                          .Include(x => x.IdCharacterizationNavigation)
@@ -1029,14 +1171,20 @@ namespace LegacyTest.Controllers
             }
         }
 
-
-
-
-        public async Task<IActionResult> GetChart18()
+        public async Task<IActionResult> GetChart18(string param = null)
         {
             try
             {
-                var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                long idCompany;
+
+                if (!string.IsNullOrEmpty(param))
+                {
+                    idCompany = long.Parse(param);
+                }
+                else
+                {
+                    idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+                }
 
                 var data = await _context.CharacterizationByCompanies
                      .Include(x => x.IdCharacterizationNavigation)

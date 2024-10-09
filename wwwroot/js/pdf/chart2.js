@@ -8,16 +8,15 @@ var familyEgoType = document.getElementById('familyEgoType');
 window.onload = function () {
     $.ajax({
         type: "POST",
-        url: "/CharacterizationByCompany/GetChart2",
+        url: "/CharacterizationByCompany/GetChart2?param="+param,
         success: function (data) {
             updateProgress(corporateEgo, data.value1);
             updateProgress(familyEgo, data.value2);
             characterization2.innerText = data.characterization;
             corporateEgoType.innerHTML = data.criterion1;
-            familyEgoType.innerHTML = data.criterion2;
-            renderAccordion(data, 'effectsAndRecommendationsAlert2');
+            familyEgoType.innerHTML = data.criterion2;           
         },
-        onComplete: function () {
+        complete: function () {
             window.JSREPORT_READY_TO_START = true
         }
 

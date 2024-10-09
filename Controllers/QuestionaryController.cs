@@ -26,21 +26,30 @@ namespace LegacyTest.Controllers
 
         public async Task<IActionResult> Index(int idCompany)
         {
-            ViewBag.questionary = "active";
-            ViewBag.planform = "show";
+            try
+            {
+                ViewBag.questionary = "active";
+                ViewBag.planform = "show";
 
-            var formIds = await _context.PlanCompanies
-                                        .Where(x => x.IdCompany == idCompany)
-                                        .SelectMany(x => x.IdPlanNavigation.FormPlans)
-                                        .Select(x => x.IdForm)
-                                        .ToListAsync();
+                var formIds = await _context.PlanCompanies
+                                            .Where(x => x.IdCompany == idCompany)
+                                            .SelectMany(x => x.IdPlanNavigation.FormPlans)
+                                            .Select(x => x.IdForm)
+                                            .ToListAsync();
 
 
-            var forms = await _context.Forms
-                                       .Where(f => formIds.Contains(f.Id))
-                                       .ToListAsync();
+                var forms = await _context.Forms
+                                           .Where(f => formIds.Contains(f.Id))
+                                           .ToListAsync();
 
-            return View(forms);
+                return View(forms);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
         }
 
         public IActionResult FillForm()
@@ -430,8 +439,6 @@ namespace LegacyTest.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
-
     }
 
 

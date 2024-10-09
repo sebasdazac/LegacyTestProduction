@@ -8,7 +8,7 @@ const colorsChart14 = generatePalette(10, 0.8);
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart14",
+    url: "/CharacterizationByCompany/GetChart14?param=" + param,
     success: function (response) {
 
         const labels14 = response.dimensions.map(item => item.label);
@@ -32,7 +32,7 @@ $.ajax({
                     }
                 },       
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                      
@@ -64,9 +64,6 @@ $.ajax({
         new Chart(ctx14, config14);
 
         updateProgress(progressBar14, response.data.value1);
-        characterization14.innerText = response.data.characterization;
-
-        renderAccordion(response.data, 'effectsAndRecommendationsAlert14');
-       
+        characterization14.innerText = response.data.characterization;       
     }
 });

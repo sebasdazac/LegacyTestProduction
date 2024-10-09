@@ -8,7 +8,7 @@ var characterization16 = document.getElementById('characterization16');
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart16",
+    url: "/CharacterizationByCompany/GetChart16?param=" + param,
     success: function (response) {
 
         const labels16 = response.dimensions.map(item => item.label);
@@ -32,7 +32,7 @@ $.ajax({
                     }
                 },        
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                         // suggestedMax: 160,
@@ -64,7 +64,6 @@ $.ajax({
 
         updateProgress(progressBar16, response.data.value1);
         characterization16.innerText = response.data.characterization;
-        renderAccordion(response.data, 'effectsAndRecommendationsAlert16');
 
       
     }

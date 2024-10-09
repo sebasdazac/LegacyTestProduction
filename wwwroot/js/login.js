@@ -1,10 +1,6 @@
-﻿
-
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     document.getElementById('formLogin').reset();
 });
-
 
 function SessionForm(event) {
 
@@ -21,19 +17,17 @@ function SessionForm(event) {
             type: 'POST',
             data: { email: email, pswd: pswd },
             success: function (data) {
-                console.log(data);
                 if (data.success) {
-                    // Inicio de sesión exitoso
+                 
                     document.getElementById('formLogin').reset();
                     window.location.href = "/Dashboard";
                 } else {
                     document.getElementById('formLogin').reset();   
-                    // Mostrar mensaje de error
+                
                     Swal.fire({ text: data.errorMessage });
                 }
             },
-            beforeSend: function () {
-                // Mostrar mensaje mientras se procesa la solicitud
+            beforeSend: function () {             
                 Swal.fire({
                     icon: 'info',
                     text: 'Un momento por favor, estamos consultando la información',
@@ -41,7 +35,6 @@ function SessionForm(event) {
                     showConfirmButton: false
                 });
             }
-
         });
         return false;
     }

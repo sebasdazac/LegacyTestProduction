@@ -8,7 +8,7 @@ var characterization17 = document.getElementById('characterization17');
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart17",
+    url: "/CharacterizationByCompany/GetChart17?param=" + param,
     success: function (response) {
 
         const labels17 = response.dimensions.map(item => item.label);
@@ -32,7 +32,7 @@ $.ajax({
                     }
                 },      
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                         // suggestedMax: 170,
@@ -62,10 +62,9 @@ $.ajax({
         };
 
         new Chart(ctx17, config17);
-
         updateProgress(progressBar17, response.data.value1);
         characterization17.innerText = response.data.characterization;
-        renderAccordion(response.data, 'effectsAndRecommendationsAlert17');
+
         
     }
 });

@@ -1,4 +1,7 @@
 ﻿@using LegacyTest.Tools;
+@{
+    var idCompany = Int32.Parse(SessionHelper.GetValue(User, "IdCompany").ToString());
+}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,11 +16,9 @@
     <link href="~/css/legacy-layout.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid d-flex justify-content-center position-relative">
             <a class="navbar-brand" href="#">
@@ -29,14 +30,11 @@
         </div>
     </nav>
 
-    <!-- Menú lateral -->
     <div class="sidebar" id="sidebar">
-        <!-- Menú de Usuario -->
         <div class="user-profile" id="userToggle">
             <div class="row align-items-center pt-4">
                 <div class="col-4">
-                    <img src="~/img/avatar-min.jpg"
-                         alt="User" class="user-avatar">
+                    <img src="~/img/avatar-min.jpg" alt="User" class="user-avatar">
                 </div>
                 <div class="col-8">
                     <small class="text-white ps-2 mt-2">Bienvenido</small>
@@ -58,39 +56,48 @@
         </div>
 
         <div class="user-menu submenu" id="userMenu">
-            <a class="@ViewBag.account" asp-controller="Company" asp-action="Account"><i class="bi bi-pencil-square fs-5 me-3"></i> Editar</a>
-            <a href="#" onclick="CloseSession();"><i class="bi bi-box-arrow-left fs-5 me-3"></i> Cerrar Sesión</a>
+            <a class="@ViewBag.account" asp-controller="Company" asp-action="Account">
+                <i class="bi bi-pencil-square fs-5 me-3"></i> 
+                Editar
+            </a>
+            <a href="#" onclick="CloseSession();">
+                <i class="bi bi-box-arrow-left fs-5 me-3"></i> 
+                Cerrar Sesión
+            </a>
         </div>
 
         <div class="main-menu">
-            <a class="main-menu-link @ViewBag.dashboard" asp-controller="Dashboard" asp-action="Index">
+            <a class="main-menu-link @ViewBag.dashboard " asp-controller="Dashboard" asp-action="Index">
                 <i class="bi bi-grid fs-5 me-3"></i>
                 Tablero principal
             </a>
-            @{
-                var idCompany = Int32.Parse(SessionHelper.GetValue(User, "IdCompany").ToString());
-            }
+
             <a class="main-menu-link @ViewBag.questionary" asp-controller="Questionary" asp-action="Index" asp-route-idCompany="@idCompany">
                 <i class="bi bi-journal-check fs-5 me-3"></i>
                 Cuestionarios
             </a>
             <a class="main-menu-link @ViewBag.reports" asp-controller="Reports" asp-action="Index">
                 <i class="bi bi-bar-chart-line fs-5 me-3"></i>
-                Diagnósitico
+                Diagnóstico
             </a>
-            <a id="servicesToggle" class="main-menu-link d-flex justify-content-between align-items-center">
+            <a id="companyToggle" class="main-menu-link d-flex justify-content-between align-items-center">
                 <div class="">
                     <i class="bi bi-buildings fs-5 me-3"></i>
                     Espacio Empresarial
                 </div>
                 <i class="bi bi-chevron-down fs-5 me-3"></i>
             </a>
-            <div class="submenu" id="servicesSubmenu">
-                <a class="main-menu-link  @ViewBag.organization" asp-controller="Company" asp-action="Organization">Información Empresa</a>
-                <a class="main-menu-link @ViewBag.plans" asp-controller="Company" asp-action="Plans">Planes</a>
+            <div class="submenu" id="companySubmenu">
+                <a class="main-menu-link  @ViewBag.organization" asp-controller="Company" asp-action="Organization">
+                    <i class="bi bi-building-gear fs-5 me-3"></i>
+                    Información Empresa
+                </a>
+                <a class="main-menu-link @ViewBag.plans" asp-controller="Company" asp-action="Plans">
+                    <i class="bi bi-credit-card fs-5 me-3"></i>
+                    Planes
+                </a>
             </div>
         </div>
-
     </div>
 
     <main class="content containter" id="content">
@@ -103,7 +110,7 @@
                 <a href="https://www.instagram.com/legacynetworkco/" target="_blank"><i class="bi bi-instagram fs-4  mx-2"></i></a>
                 <a href="https://www.linkedin.com/posts/legacy-network-co_gobiernocorporativo-planeaciaejnestrataezgicaempresarial-activity-7133490730156601344-iZgZ?utm_source=share&utm_medium=member_android" target="_blank"><i class="bi bi-linkedin fs-4  mx-2"></i></a>
                 <a href="https://www.youtube.com/&#64;LegacyNetworkco" target="_blank">
-                    <i class="bi bi-youtube fs-3  mx-2"></i>
+                    <i class="bi bi-youtube fs-3 mx-2"></i>
                 </a>
                 <a class="pt-2 me-3 mx-2" href="#">Privacidad</a>
                 <a class="pt-2 me-3 mx-2" href="#">Términos y Referencias</a>
@@ -122,11 +129,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
-
     <script src="~/js/dashboard.js"></script>
     <script src="~/js/main.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>

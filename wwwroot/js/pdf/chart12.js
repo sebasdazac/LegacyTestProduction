@@ -5,7 +5,7 @@ const colorsChart12 = generatePalette(10, 0.8);
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart12",
+    url: "/CharacterizationByCompany/GetChart12?param=" + param,
     success: function (data) {
 
         data.forEach(item => {
@@ -35,14 +35,14 @@ $.ajax({
             type: 'bar',
             data: data12,
             options: {
-                indexAxis: 'y', // Esto hace que las barras sean horizontales               
                 animation: {
                     onComplete: function () {
                         window.JSREPORT_READY_TO_START = true
                     }
                 },
-                responsive: false,
-                maintainAspectRatio: false,
+                indexAxis: 'y', // Esto hace que las barras sean horizontales               
+                responsive: true,
+                maintainAspectRatio: true,
                 scales: {
                     x: {
                         beginAtZero: true,
@@ -96,7 +96,6 @@ $.ajax({
             }
         };
         new Chart(ctx12, config12);   
-        renderDimensionAccordion(data, 'effectsAndRecommendationsAlert12', 'value1', false);
     }
 });
 

@@ -5,7 +5,7 @@ const colorsChart5 = generatePalette(10,0.8);
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart5",
+    url: "/CharacterizationByCompany/GetChart5?param=" + param,
     success: function (data) {
 
         data.forEach(item => {
@@ -37,9 +37,13 @@ $.ajax({
             type: 'bar',
             data: data5,
             options: {
-                indexAxis: 'y',   
-              
-                responsive: false,
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
+                indexAxis: 'y',               
+                responsive: true,
                 maintainAspectRatio: true,
                 scales: {
                     x: {
@@ -95,7 +99,7 @@ $.ajax({
         };
 
         new Chart(ctx5, config5);    
-        renderDimensionAccordion(data, 'effectsAndRecommendationsAlert5', 'value1', true);
+     
 
     }
 });

@@ -44,7 +44,7 @@
                                             <div class="col-md-4">
                                                 
 
-                                                <button class="btn btn-outline-light fs-6 mt-2 ms-5" id="btnExportReport" onclick="exportReport(@item.Id)">
+                                                <button class="btn btn-outline-light fs-6 mt-2 ms-5" id="btnExportReport" onclick="ExportReport(@item.Id, '@item.NameForm')">
                                                     <span class="page-header-icon"><i class="bi bi-filetype-pdf me-2"></i></span>
                                                     Generar PDF
                                                 </button>
@@ -145,10 +145,64 @@
 @section Scripts {
 
     <script>
-        function exportReport(reportId) {
-            var url = '@urlHelper' + '?idForm=' + reportId;
-            window.location.href = url;
+        function ExportReport(reportId, nameForm) {
+            let timerInterval;
+            $.ajax({
+                url: '/Pdf/GeneratePdf',
+                type: 'GET',
+                data: {
+                    idForm: reportId
+                },
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Procesando',
+                        html: 'El documento se est\u00E1 generando, por favor espere... <b></b>',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                },
+                success: function (data, status, xhr) {
+                    var a = document.createElement('a');
+                    var url = window.URL.createObjectURL(data);
+                    a.href = url;
+                    a.download = `${nameForm}.pdf`;
+                    document.body.append(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Reporte generado',
+                        text: 'El reporte se ha generado exitosamente.'
+                    });
+                },
+                error: function (xhr, status, error) {
+                    let errorMessage;
+
+                    if (xhr.status === 400) {
+                        errorMessage = "Solicitud incorrecta. Verifique los datos enviados.";
+                    } else {
+                        errorMessage = "Ocurri\u00F3 un error al procesar la solicitud.";
+                    }
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: errorMessage
+                    });
+                }
+            });
         }
+
     </script>
 
 

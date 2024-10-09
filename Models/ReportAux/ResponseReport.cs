@@ -3,6 +3,9 @@
     public class ResponseReport
     {
         public long IdCompany { get; set; }
+
+        public int RowsPerPage { get; set; }
+        public int CardsPerSet { get; set; }
         public FormReport? Form { get; set; }
         public List<ReportScale>? Scales { get; set; }        
         public List <DataMatrix>? Matrix { get; set; }

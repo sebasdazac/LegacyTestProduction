@@ -5,7 +5,7 @@ const colorsChart6 = generatePalette(10,0.8);
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart6",
+    url: "/CharacterizationByCompany/GetChart6?param=" + param, ,
     success: function (response) {
 
         const labels6 = response.dimensions.map(item => item.label);
@@ -27,9 +27,14 @@ $.ajax({
             type: 'bar',
             data: data6,
             options: {
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
                 indexAxis: 'y', // Esto hace que las barras sean horizontales              
                 responsive: true,
-                maintainAspectRatio: false,              
+                maintainAspectRatio: true,              
                 scales: {
                     x: {
                         beginAtZero: true,

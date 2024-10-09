@@ -9,7 +9,7 @@ var characterization8 = document.getElementById('characterization8');
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart8",
+    url: "/CharacterizationByCompany/GetChart8?param=" + param, 
     success: function (response) {
    
         const labels8 = response.dimensions.map(item => item.label);
@@ -29,9 +29,14 @@ $.ajax({
             type: 'bar',
             data: data8,
             options: {
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
                 indexAxis: 'y', // Esto hace que las barras sean horizontales                 
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     x: {
                         beginAtZero: true,
@@ -90,8 +95,7 @@ $.ajax({
         updateProgress(progressBar8_1, response.data.value1);
         updateProgress(progressBar8_2, response.data.value2);
         characterization8.innerText = response.data.characterization;
-
-        renderAccordion(response.data, 'effectsAndRecommendationsAlert8');
+       
 
     }
 });

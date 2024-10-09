@@ -214,6 +214,7 @@ $.ajax({
         updateProgress(propertyDirection, data[1].value1);
         updateProgress(propertyTrust, data[1].value2);
         updateProgress(familyDirection, data[2].value1);
-        updateProgress(familyTrust, data[2].value2);            
+        updateProgress(familyTrust, data[2].value2);   
+
     }
 });

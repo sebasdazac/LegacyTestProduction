@@ -7,10 +7,6 @@ using jsreport.Binary;
 using jsreport.Local;
 using jsreport.AspNetCore;
 
-
-//Microsoft.Playwright.Program.Main(new string[] { "install" });
-//return;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = new ConfigurationBuilder()
@@ -99,8 +95,6 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-
-builder.Services.AddSingleton<PdfGeneratorService>();
 
 var app = builder.Build();
 

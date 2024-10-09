@@ -8,7 +8,7 @@ var characterization11 = document.getElementById('characterization11');
 
 $.ajax({
     type: "POST",
-    url: "/CharacterizationByCompany/GetChart11",
+    url: "/CharacterizationByCompany/GetChart11?param=" + param,
     success: function (response) {
 
         const labels11 = response.dimensions.map(item => item.label);
@@ -25,9 +25,14 @@ $.ajax({
         const config11 = {
             type: 'polarArea',
             data: data11,
-            options: {               
+            options: {  
+                animation: {
+                    onComplete: function () {
+                        window.JSREPORT_READY_TO_START = true
+                    }
+                },
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     r: {
                         
@@ -65,6 +70,5 @@ $.ajax({
 
         updateProgress(progressBar11, response.data.value1);
         characterization11.innerText = response.data.characterization;
-        renderAccordion(response.data, 'effectsAndRecommendationsAlert11');
     }
 });
