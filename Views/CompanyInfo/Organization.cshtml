@@ -1,0 +1,187 @@
+﻿@using LegacyTest.Tools
+
+
+@{
+    int userRoleId;
+    bool isButtonEnabled = false;
+
+    string roleString = SessionHelper.GetValue(User, "IdRole");
+    if (int.TryParse(roleString, out userRoleId))
+    {
+        isButtonEnabled = userRoleId == 2;
+    }
+}
+
+<div class="banner-section-right" style="background-image: url('/img/organization-min.jpg');">
+    <div class="col-lg-6">
+        <p class="lead mb-4 text-white">
+            ¡Haz que la gestión de datos sea sencilla y efectiva para lograr un equipo más fuerte y una organización más eficiente!
+            <br />
+        <p class="lead mb-4 text-white">
+            Actualiza tus datos y aprovecha al máximo tu participación!
+        </p>
+    </div>
+</div>
+<div class="row bg-blue2 pb-5">
+    <div class="col-md-12 p-5">
+        <h3 class=" fw-bolder text-white"><i class="bi bi-building-gear me-2"></i>Información Empresa</h3>
+    </div>
+</div>
+
+
+<div class="card-container px-4 mt-n10">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card text-center ">
+                <div class="card-body px-5 pt-5 d-flex flex-column">
+                    <div>
+                        <div class="h3 text-primary">Invitar Miembro de la Organización</div>
+                        <p class="text-muted mb-4">
+                            Envía una invitación a nuevos miembros para unirse a tu organización y trabajar en equipo. Facilita la colaboración y optimiza el rendimiento colectivo.
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-transparent px-5">
+                        <div class="small text-center">
+                            <button type="button" class="btn btn-block btn-primary" id="addMemberButton" @(isButtonEnabled ? "" : "disabled")
+                                    data-bs-toggle="modal" data-bs-target="#addMemberModal">
+                                Agregar miembro
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <div class="card text-center h-100 ">
+                <div class="card-body px-5 pt-5 d-flex flex-column align-items-between">
+                    <div>
+                        <div class="h3 text-secondary">Unirse a una Organización</div>
+                        <p class="text-muted mb-4">
+                            Únete a tu organización fácilmente si has recibido una invitación.
+                            Es tu oportunidad de formar parte del equipo! Completa tu registro y comienza a colaborar con tus compañeros de manera rápida y sencilla. ¡Bienvenido a bordo!
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-transparent px-5">
+                        <div class="small text-center">
+                            <button type="button" class="btn btn-block btn-secondary" id="addCompany" data-bs-toggle="modal" data-bs-target="#addCompanyModal">Unirte a una organización</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addMemberModalLabel">Agregar miembro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addMemberForm">
+                    <div class="mb-3">
+                        <label for="memberName" class="form-label">Nombre de la persona</label>
+                        <input type="text" class="form-control" id="memberName" placeholder="Ingresa el nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="memberEmail" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="memberEmail" placeholder="Ingresa el correo electrónico" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="submitAddMemberForm">Enviar invitación</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addCompanyModal" tabindex="-1" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCompanyModalLabel">Unirse a la Organización</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCompanyForm">
+                    <div class="mb-3">
+                        <label for="tokenInvitation" class="form-label">Código de Invitación</label>
+                        <input type="text" class="form-control" id="tokenInvitation" placeholder="Ingresa el código" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="submitAddCompanyForm">Unirse</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row m-3">
+    <div class="col-12 col-md-6 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body px-3 px-md-5 pt-3 pt-md-5 d-flex flex-column">
+                <div class="h3 text-primary">Actualizar Información</div>
+                <p class="text-muted mb-4">
+                    Administra con facilidad la información vital de tu organización y de tus compañeros de equipo.
+                    Mantén todo en orden y conectado para potenciar la colaboración y el rendimiento conjunto.
+                </p>
+                <form id="companyForm">
+                    <div class="mb-3">
+                        <label class="small mb-1" for="BusinessName">Nombre de la empresa</label>
+                        <input class="form-control" id="BusinessName" type="text" placeholder="Ingresa el nombre de tu empresa" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Identificación tributaria</label>
+                        <div class="input-group">
+                            <select class="form-select w-50" id="TypeReg" name="TypeReg" required>
+                                <!-- Opciones de identificación -->
+                            </select>
+                            <input type="text" class="form-control w-50" placeholder="Digita el número de identificación" id="CommercialReg" required />
+                        </div>
+                        <label class="small text-muted mt-1 text-center">Ingresa el número de identificación con guiones si aplica</label>
+                    </div>
+                </form>
+                <!-- Botones de actualización y activación -->
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                        <button type="button" class="btn btn-block btn-primary" id="updateOrganizationButton" @(isButtonEnabled ? "" : "disabled")>Actualizar tu organización</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card p-3 h-100">
+            <div class="card-div">
+                <label>Miembros de la Organización</label>
+            </div>
+            <div class="card-body table-responsive overflow-hidden">
+                <table id="peopleTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/company.organization.js"></script>
+}

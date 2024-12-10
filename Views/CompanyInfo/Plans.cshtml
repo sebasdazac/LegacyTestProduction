@@ -1,0 +1,324 @@
+﻿<div class="container-xl px-4">
+    <div class="pricing-detailed">
+        <div class="row align-items-center g-0">
+            <!-- Detailed pricing column 1 -->
+            <div class="col-lg-6 z-1 mb-4 mb-lg-0">
+                <div class="card text-center border-0">
+                    <div class="card-body p-5">
+                        <div id="planPriceContainer" class="mb-4">
+                            <span id="planPrice" class="display-4 fw-bold text-dark">$ - </span>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li id="planDescription" class="d-flex align-items-center justify-content-center mb-3">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Detailed pricing column 2 -->
+            <div class="col-lg-6">
+                <div class="card bg-dark text-center">
+                    <div id="planNameContainer" class="card-header justify-content-center py-4">
+                        <h4 id="planName" class="mb-0 text-primary fw-bolder">Punto de Partida Empresarial</h4>
+                    </div>
+                    <div id="planBody" class="card-body text-white fs-6 p-5">
+                    </div>
+                    <div id="planFooter" class="card-footer text-warning fs-4">
+                        Plan Activo:
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr class="my-10" />
+
+<div class="container">
+    <div class="row p-5">
+        <div class="col-md-12">
+            <div class="table-responsive-md">
+                <table class="table mb-0">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th class="py-3 w-25" scope="col"></th>
+                            <th class="py-3 w-15 text-center" scope="col">Punto de Partida Empresarial</th>
+                            <th class="py-3 w-15 text-center" scope="col">Suite Integral de Diagnóstico <br /> <span class="fs-5 text-success"> Lanzamiento</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- First Row of Descriptions -->
+                        <tr>
+                            <th class="px-2" scope="row"></th>
+                            <td class="px-2 text-justify">
+                                <p>¿Sabías que ciertos patrones de comportamiento, creencias y prácticas en tu empresa familiar podrían ser trampas que limitan su crecimiento y armonía? ¡Descúbrelo con nuestro cuestionario!</p>
+                            </td>
+                            <td class="px-2 text-justify">
+                                <p>Evalúa tu empresa familiar con nuestros cuestionarios: aborda las tipologías de fundadores y empresas, las etapas de desarrollo y las trampas comunes. Diagnostica patologías organizativas y carga emocional.</p>
+                            </td>
+                        </tr>
+                        <!-- Data Rows with Icons and Pricing -->
+                        <tr>
+                            <th class="px-2" scope="row">Espacio empresarial</th>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Cuentas de usuario</th>
+                            <td class="px-2 text-center">2</td>
+                            <td class="px-2 text-center">Ilimitadas</td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Precios [No incluye IVA]</th>
+                            <td class="px-2">
+                                <div class="text-dark mb-2">
+                                    <p class="fs-1 text-center">$ -</p>
+                                </div>
+                                <p class="text-center">Descubre las trampas que te impiden avanzar</p>
+                                <div class="text-center mb-3">
+                                    <form id="activationPlanForm">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="token" name="token" placeholder="Digita tu código">
+                                            <button type="button" class="btn btn-secondary" id="activatePlanButton">Activa Plan Gratuito</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="px-2">
+                                <div class="text-dark mb-2">
+                                    <p class="fs-1 text-center">$599</p>
+                                </div>
+                                <p class="text-center">25% en programas de formación de Legacy School of Ownership-LSO</p>
+                                <div class="text-center mb-3">
+                                    <form id="epaycoForm1" style="display: none;">
+                                        <script src="https://checkout.epayco.co/checkout.js"
+                                                data-epayco-key="@ViewBag.Key"
+                                                class="epayco-button"
+                                                data-epayco-amount="599"
+                                                data-epayco-tax="0.00"
+                                                data-epayco-tax-base="599"
+                                                data-epayco-name="Suite Lanzamiento"
+                                                data-epayco-description="Legacy Test Suit Integral Lanzamiento 2024"
+                                                data-epayco-currency="usd"
+                                                data-epayco-country="CO"
+                                                data-epayco-test= "ViewBag.Test"
+                                                data-epayco-external="false"
+                                                data-epayco-extra1="5"
+                                                data-epayco-response="@ViewBag.ResponseUrl"
+                                                data-epayco-confirmation="@ViewBag.ConfirmationUrl"
+                                                data-epayco-button="https://multimedia.epayco.co/dashboard/btns/btn5.png">
+                                        </script>
+                                    </form>
+
+                                    <button id="validateButton1" class="btn btn-primary" onclick="validatePlanStatus('validateButton1', 'epaycoForm1')">Comprar Plan 1</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Trampas Familiares</th>
+                            <td class="px-2"><i class="bi bi-check text-success fs-4"></i></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Tipologías de Empresa Familiar</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Tipologías Fundador</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Competencias del Sucesor</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Equipaje Emocional</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Cultura de la Propiedad</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Estrategia Familiar</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Estrategia Patrimonial</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Estructura Patrimonial</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Estructura Familiar</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Etapa de la Empresa</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Gobierno Corporativo A Patologías</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Gobierno Corporativo B Evolución</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Estructura Organizacional</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Sistemas de Dirección</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="px-2" scope="row">Planeación Estratégica Empresarial</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                            <th class="px-2" scope="row">Sistema Familiar, Patrimonial y Empresarial</th>
+                            <td class="px-2"></td>
+                            <td class="px-2 text-center"><i class="bi bi-check text-success fs-4"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+      $.ajax({
+            url: '/Epayco/GetCurrentPlan',
+            type: 'GET',
+            success: function (data) {
+                if (data) {
+                    $('#planPrice').text(`$ ${data.price}`); // Actualiza el precio del plan
+                    $('#planDescription').html(data.description); // Llena la descripción del plan
+                    $('#planName').text(data.namePlan); // Actualiza el nombre del plan
+                    $('#planBody').html(data.bonus); // Llena el cuerpo con el contenido del plan
+                    $('#planFooter').html(`Plan Activo: ${new Date(data.startDate).toLocaleDateString('es-ES')} al ${new Date(data.endDate).toLocaleDateString('es-ES')}`); // Actualiza las fechas del plan
+                }
+            },
+            error: function () {
+                alert('Error retrieving current plan details.');
+            }
+        });
+
+
+
+        function validatePlanStatus(buttonId, formId, planName) {
+            Swal.fire({
+                title: 'Verificando plan...',
+                text: 'Por favor espera mientras verificamos el estado de tu plan.',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                url: '/Epayco/VerifyPlanStatus',
+                type: 'GET',
+                success: function (response) {
+                    console.log(response);
+                    Swal.close();
+                    switch (response.status) {
+                        case "active_and_valid":
+                            Swal.fire({
+                                title: `Plan ${response.planName} activo y válido`,
+                                text: `Tu plan actual (${response.planName}) está activo hasta el ${response.expiryDate}. ¿Deseas continuar con este plan?`,
+                                icon: 'info',
+                                showCancelButton: true,
+                                confirmButtonText: 'Sí, proceder',
+                                cancelButtonText: 'No, cancelar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById(formId).style.display = 'block';
+                                    document.getElementById(buttonId).style.display = 'none';
+                                }
+                            });
+                            break;
+                        case "valid_but_inactive":
+                            Swal.fire({
+                                title: `${response.planName} está inactivo`,
+                                text: `Este plan (${response.planName}) está vigente hasta el ${response.expiryDate}, pero no está activo. ¿Deseas cambiar este plan?`,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Sí, cambiar',
+                                cancelButtonText: 'No, mantener plan'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById(formId).style.display = 'block';
+                                    document.getElementById(buttonId).style.display = 'none';
+                                }
+                            });
+                            break;
+                        case "no_valid_plan":
+                            Swal.fire({
+                                title: `${response.planName} no está vigente`,
+                                text: `Tu plan actual (${response.planName}) ha expirado. ¿Deseas cambiar a un nuevo plan?`,
+                                icon: 'error',
+                                showCancelButton: true,
+                                confirmButtonText: 'Sí, cambiar',
+                                cancelButtonText: 'No, mantener plan'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById(formId).style.display = 'block';
+                                    document.getElementById(buttonId).style.display = 'none';
+                                }
+                            });
+                            break;
+                        case "no_plan":
+                            Swal.fire({
+                                title: 'No tienes un plan asignado',
+                                text: '¿Deseas adquirir un plan ahora?',
+                                icon: 'error',
+                                showCancelButton: true,
+                                confirmButtonText: 'Sí, adquirir',
+                                cancelButtonText: 'No, gracias'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById(formId).style.display = 'block';
+                                    document.getElementById(buttonId).style.display = 'none';
+                                }
+                            });
+                            break;
+                    }
+                },
+                error: function () {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Hubo un problema al verificar el estado de tu plan.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
+        }
+    </script>
+}

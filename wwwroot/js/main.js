@@ -1,4 +1,3 @@
-
 Chart.register(ChartDataLabels);
 function SaveOrUpdateForm(formId, controllerRoute, tableId) {
     var form = document.getElementById(formId);
@@ -198,7 +197,7 @@ function renderDimensionAccordion(data, containerId, progressProperty, inverse) 
             <h2 class="accordion-header bg-blue1" id="${headingId}">
                 <div class="row">
                     <div class="col-md-2 d-flex align-items-center justify-content-center">
-                        <div class="progress ms-4" role="progressbar" aria-label="Example with label"
+                        <div class="progress m-2" role="progressbar" aria-label="Example with label"
                              aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem;">
                             <div class="progress-bar" style="width: ${progressValue}%">${progressValue}%</div>
                         </div>

@@ -4,7 +4,7 @@ Scaffold-DbContext "Server=localhost\SQLEXPRESS;Database=LegacyDB;Trusted_Connec
 
 
 
-Scaffold-DbContext "Data Source=localhost;Initial Catalog=LegacyTesting;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+Scaffold-DbContext "Data Source=localhost;Initial Catalog=LegacyDemo;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
 
 
 
@@ -88,3 +88,11 @@ delete from Question;
     {
         window.JSREPORT_READY_TO_START = true
     }
+
+
+
+    ngrok
+    WTV6YHT7ABZQB6YLWOK2O6A53AQUIQIY
+
+
+    Scaffold-DbContext "Data Source=66.94.114.234;Initial Catalog=LegacyModal;User ID=sa;Password=Legacytest2023;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -DataAnnotations -Force

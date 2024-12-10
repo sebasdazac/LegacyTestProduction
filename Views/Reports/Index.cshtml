@@ -14,10 +14,10 @@
 
 <div class="banner-section-right" style="background-image: url('/img/diagnostic-min.jpg');">
     <div class="col-lg-6">
-        <p class="fs-4 mb-4">
+        <p class="mb-2">
             Te presentamos los resultados generados por LegacyTest, una herramienta diseñada para impulsar el crecimiento y la mejora de tu empresa familiar.
         </p>
-        <p class="fs-4 mb-4">
+        <p class="mb-2">
             Descubre cómo esta potente herramienta puede beneficiar a tu negocio y ayudarte a alcanzar nuevos niveles de éxito.
         </p>
     </div>
@@ -29,8 +29,8 @@
     </div>
 </div>
 
-<div class="container-fluid px-4">
-    <div class="card card-container p-5">
+<div class="container-fluid px-2 px-md-4">
+    <div class="card card-container p-2 p-md-4">
         <div class="row">
             <div class="tab-content" id="myTabContent">
                 @foreach (var item in Model)
@@ -41,23 +41,19 @@
                                 <div class="card">
                                     <div class="card-header bg-blue2">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                
-
-                                                <button class="btn btn-outline-light fs-6 mt-2 ms-5" id="btnExportReport" onclick="ExportReport(@item.Id, '@item.NameForm')">
+                                            <div class="col-12 col-md-4 text-center text-md-start mb-3 mb-md-0">
+                                                <button class="btn btn-outline-light fs-6" id="btnExportReport" onclick="ExportReport(@item.Id, '@item.NameForm')">
                                                     <span class="page-header-icon"><i class="bi bi-filetype-pdf me-2"></i></span>
                                                     Generar PDF
                                                 </button>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="row justify-content-center align-items-center">
-                                                    <div class="text-center">
-                                                        <h5 class="text-center text-white fw-bold mt-3">@item.NameForm.ToUpper()</h5>
-                                                    </div>
-                                                </div>
+                                            <!-- Título centrado -->
+                                            <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+                                                <h5 class="text-white fw-bold">@item.NameForm.ToUpper()</h5>
                                             </div>
-                                            <div class="col-md-4 d-flex justify-content-end align-items-center">
-                                                <button class="btn btn-outline-light fs-5 me-5" type="button"
+                                            <!-- Botón del menú de reportes -->
+                                            <div class="col-12 col-md-4 text-center text-md-end">
+                                                <button class="btn btn-outline-light fs-6" type="button"
                                                         data-bs-toggle="offcanvas"
                                                         data-bs-target="#offcanvasWithTabs"
                                                         aria-controls="offcanvasWithTabs"
@@ -68,32 +64,34 @@
                                                     <span class="page-header-icon">
                                                         <i class="bi bi-menu-up"></i>
                                                     </span>
-                                                    Ver Reportes
+                                                    Diagnósticos
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body p-5">
+                                    <div class="card-body p-2 p-md-5">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p class="text-justify fs-6 mb-3">@item.DescriptionReport</p>
-                                                <table class="table table-bordered" id="table-@item.Id">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center bg-blue3 text-white" scope="col">@item.ReportScaleList.Select(x => x.Title).Distinct().First().ToUpper()</th>
-                                                            <th class="text-center bg-blue3 text-white" scope="col">DESCRIPCIÓN</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var scale in @item.ReportScaleList)
-                                                        {
+                                                <p class="text-justify mb-3">@item.DescriptionReport</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="table-@item.Id">
+                                                        <thead>
                                                             <tr>
-                                                                <td class="text-center p-3">@scale.Category</td>
-                                                                <td class="text-justify p-3">@scale.Description</td>
+                                                                <th class="text-center bg-blue3 text-white" scope="col">@item.ReportScaleList.Select(x => x.Title).Distinct().First().ToUpper()</th>
+                                                                <th class="text-center bg-blue3 text-white" scope="col">DESCRIPCIÓN</th>
                                                             </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var scale in @item.ReportScaleList)
+                                                            {
+                                                                <tr>
+                                                                    <td class="text-center p-3">@scale.Category</td>
+                                                                    <td class="text-justify p-3">@scale.Description</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -102,7 +100,7 @@
                                                     <label>Diagnóstico Actual</label>
                                                 </div>
 
-                                                <div class="container">
+                                                <div class="container-fluid">
                                                     @{
                                                         string path = $"~/Views/Reports/_chart{item.Id}.cshtml";
                                                         @Html.Partial(path)
@@ -124,7 +122,7 @@
 
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithTabs" aria-labelledby="offcanvasWithTabsLabel">
     <div class="offcanvas-header">
-        <h4 class="offcanvas-title blue2 fw-bolder" id="offcanvasWithTabsLabel">Seleccionar Reporte</h4>
+        <h4 class="offcanvas-title blue2 fw-bolder" id="offcanvasWithTabsLabel">Seleccionar Diagnóstico</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body main-menu">
@@ -204,6 +202,50 @@
         }
 
     </script>
+
+
+@* <script>
+    function ExportReport(reportId) {
+        $.ajax({
+            url: '/Pdf/GeneratePdf',
+            type: 'GET',
+            data: {
+                idForm: reportId
+            },
+            beforeSend: function () {
+                Swal.fire({
+                    title: 'Procesando',
+                    html: 'Redirigiendo a la vista del reporte...',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            },
+            success: function (data) {
+                // Redirigir a la vista generada
+                window.location.href = `/Pdf/GeneratePdf?idForm=${reportId}`;
+            },
+            error: function (xhr, status, error) {
+                let errorMessage;
+
+                if (xhr.status === 400) {
+                    errorMessage = "Solicitud incorrecta. Verifique los datos enviados.";
+                } else {
+                    errorMessage = "Ocurri\u00F3 un error al procesar la solicitud.";
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage
+                });
+            }
+        });
+    }
+</script>  *@
 
 
     @foreach (var item in Model)

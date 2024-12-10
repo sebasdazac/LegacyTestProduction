@@ -14,6 +14,10 @@ namespace LegacyTest.Models
         public string Pswd { get; set; } = null!;
         public string? Token { get; set; }
         public string State { get; set; } = null!;
+        public byte[]? Photo { get; set; }
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiry { get; set; }
+
 
         public virtual Company IdCompanyNavigation { get; set; } = null!;
         public virtual AdminRole IdRoleNavigation { get; set; } = null!;

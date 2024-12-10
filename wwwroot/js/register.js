@@ -59,7 +59,7 @@ document.getElementById('btnRegister').addEventListener('click', function () {
 });
 
 function validatePassword(password, confirmPassword) {
-    var passwordCriteria = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    var passwordCriteria = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s])[^\s]{8,}$/;
     if (password !== confirmPassword) {
         Swal.fire({
             icon: 'error',

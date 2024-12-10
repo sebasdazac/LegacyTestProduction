@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Http;
 using LegacyTest.Tools;
 using System.ComponentModel.Design;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LegacyTest.Controllers
 {
+    [Authorize]
     public class QuestionaryController : Controller
     {
 

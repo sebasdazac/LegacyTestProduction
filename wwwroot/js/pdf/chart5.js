@@ -38,6 +38,7 @@ $.ajax({
             data: data5,
             options: {
                 animation: {
+
                     onComplete: function () {
                         window.JSREPORT_READY_TO_START = true
                     }

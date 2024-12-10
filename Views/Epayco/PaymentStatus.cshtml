@@ -1,0 +1,29 @@
+﻿@model List<LegacyTest.Models.TransactionCompany>
+
+<h2>Estado de Transacciones</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Número de Referencia</th>
+            <th>Estado</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Forma de Pago</th>
+            <th>Plataforma de Pago</th> <!-- Aquí mostramos si fue banco, Efecty, etc. -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.NumberReference</td>
+                <td>@transaction.StateTransaction</td>
+                <td>@transaction.Price</td>
+                <td>@transaction.DateTransaction.ToString("g")</td>
+                <td>@transaction.PaymentForm</td>
+                <td>@transaction.PaymentPlataform</td> <!-- Se muestra la plataforma de pago -->
+            </tr>
+        }
+    </tbody>
+</table>

@@ -16,8 +16,8 @@ namespace LegacyTest.Controllers
         private readonly LegacyDBContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
 
-        private int[] rowsPerPage = new int[18] { 4, 2, 5, 4, 2, 2, 3, 4, 3, 4, 4, 5, 4, 4, 2, 4, 4, 6 };
-        private int[] cardsPerSet = new int[18] { 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2 };
+        private int[] rowsPerPage = new int[18] { 3, 2, 5, 4, 2, 2, 3, 4, 3, 4, 4, 5, 4, 4, 2, 4, 4, 6 };
+        private int[] cardsPerSet = new int[18] { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2 };
 
 
         public IJsReportMVCService JsReportMVCService { get; }
@@ -123,9 +123,11 @@ namespace LegacyTest.Controllers
                            MarginLeft = "0cm",
                            MarginBottom = "0cm",
                            MarginRight = "0cm",
-                           WaitForJS = true
+                           WaitForJS = false
                        };
                    });
+
+
 
                 return View("PdfReport", responseReport);
             }
@@ -138,11 +140,12 @@ namespace LegacyTest.Controllers
         [HttpGet]
         public async Task<IActionResult> GeneratePdf(long idForm)
         {
-            
+
+         long idPerson = long.Parse(SessionHelper.GetValue(User, "IdPerson"));
             long idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
             long idPlanCompany = long.Parse(SessionHelper.GetValue(User, "idPlanCompany"));
 
-            
+
             var url = Url.Action("GenerateJReport", "Pdf", new { idForm = idForm, idCompany = idCompany, idPlanCompany = idPlanCompany }, Request.Scheme);
 
             using (var httpClient = new HttpClient())
@@ -150,6 +153,20 @@ namespace LegacyTest.Controllers
                 var response = await httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
+
+                    var reportExport = new ReportExport
+                    {
+                        IdPerson = idPerson,
+                        IdPlanCompany = idPlanCompany,
+                        IdCompany = idCompany,
+                        IdForm = idForm,
+                        ExportDate = DateTime.Now
+                    };
+
+                    _context.ReportExports.Add(reportExport);
+                    await _context.SaveChangesAsync();
+
+
                     var pdfContent = await response.Content.ReadAsByteArrayAsync();
                     return File(pdfContent, "application/pdf", "report.pdf");
                 }
@@ -161,9 +178,15 @@ namespace LegacyTest.Controllers
         }
 
 
+        //[HttpGet]
+        //public async Task<IActionResult> GeneratePdf(long idForm)
+        //{
+        //    long idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+        //    long idPlanCompany = long.Parse(SessionHelper.GetValue(User, "idPlanCompany"));
 
-
-
+           
+        //    return RedirectToAction("GenerateJReport", "Pdf", new { idForm = idForm, idCompany = idCompany, idPlanCompany = idPlanCompany });
+        //}
 
     }
 }

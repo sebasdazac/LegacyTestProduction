@@ -16,7 +16,7 @@ namespace LegacyTest.Models
         public string CommercialReg { get; set; } = null!;
         public string? TypeReg { get; set; }
 
-        public virtual ICollection<Person> People { get; set; }
-        public virtual ICollection<PlanCompany> PlanCompanies { get; set; }
+        public virtual ICollection<Person>? People { get; set; }
+        public virtual ICollection<PlanCompany>? PlanCompanies { get; set; }
     }
 }

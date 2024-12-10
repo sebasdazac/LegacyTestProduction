@@ -1,5 +1,6 @@
 ﻿using LegacyTest.Models;
 using LegacyTest.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Reflection.Emit;
 
 namespace LegacyTest.Controllers
 {
+   
     public class CharacterizationByCompanyController : Controller
     {
 

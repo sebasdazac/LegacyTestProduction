@@ -1,11 +1,9 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    // Llama al controlador para obtener la información de la empresa
+﻿document.addEventListener('DOMContentLoaded', function () {   
     $.ajax({
-        url: '/Company/GetOrganizationInfo',
+        url: '/CompanyInfo/GetOrganizationInfo',
         type: 'GET',
         success: function (data) {
-            if (data) {
-                // Asignar los valores recibidos a los inputs del formulario
+            if (data) {              
                 document.getElementById('BusinessName').value = data.businessName || '';
                 document.getElementById('TypeReg').value = data.typeReg || '';
                 document.getElementById('CommercialReg').value = data.commercialReg || '';
@@ -20,8 +18,6 @@
         }
     });
 
-
-    // Actualizar la información de la compañía
     document.getElementById('updateOrganizationButton').addEventListener('click', function () {
         var form = document.getElementById('companyForm');
 
@@ -46,15 +42,14 @@
         });
 
         $.ajax({
-            url: '/Company/UpdateOrganizationInfo',
+            url: '/CompanyInfo/UpdateOrganizationInfo',
             type: 'POST',
             data: {
                 businessName: businessName,
                 typeReg: typeReg,
                 commercialReg: commercialReg
             },
-            success: function (response) {
-                // Recargar la tabla para mostrar el nuevo miembro
+            success: function (response) {               
                 $('#peopleTable').DataTable().ajax.reload();
                 if (response.success) {                 
 
@@ -81,14 +76,9 @@
         });
     });
 
-
-
-
-
-    // Configurar DataTable
     $('#peopleTable').DataTable({
         "ajax": {
-            "url": "/Company/GetPeople",
+            "url": "/CompanyInfo/GetPeople",
             "type": "GET",
             "dataSrc": ""
         },
@@ -126,56 +116,7 @@
     });
 
 
-
-    // Capturar el valor del input y enviarlo por AJAX al activar el plan gratuito
-    document.getElementById('activatePlanButton').addEventListener('click', function () {
-        var tokenValue = document.getElementById('token').value;
-
-        Swal.fire({
-            title: 'Enviando...',
-            text: 'Estamos procesando tu solicitud.',
-            icon: 'info',
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            willOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
-        $.ajax({
-            url: '/Company/ActivatePlanFree',
-            type: 'POST',
-            data: { token: tokenValue },
-            success: function (response) {
-                // Recargar la tabla para mostrar el nuevo miembro
-                $('#peopleTable').DataTable().ajax.reload();
-                if (response.success) {
-                   
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: response.message
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: response.message
-                    });
-                }
-            },
-            error: function (xhr, status, error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error al activar el plan.'
-                });
-            }
-        });
-    });
-
-    // Manejar el envío del formulario en el modal
-    // Manejar el envío del formulario en el modal
+  
     document.getElementById('submitAddMemberForm').addEventListener('click', function () {
         var form = document.getElementById('addMemberForm');
 
@@ -199,7 +140,7 @@
         });
 
         $.ajax({
-            url: '/Company/InviteColaborator',
+            url: '/CompanyInfo/InviteColaborator',
             type: 'POST',
             data: {
                 name: name,
@@ -214,8 +155,7 @@
                         text: response.message
                     });
                     $('#addMemberModal').modal('hide');
-
-                    // Limpiar el formulario después de enviar los datos
+                   
                     form.reset();
                 } else {
                     Swal.fire({
@@ -233,9 +173,7 @@
                 });
             }
         });
-    });
-
-    
+    });   
 
     document.getElementById('submitAddCompanyForm').addEventListener('click', async function () {
         const token = document.getElementById('tokenInvitation').value;
@@ -250,7 +188,7 @@
         }
 
         try {
-            const response = await fetch('/Company/ValidateInvitation', {
+            const response = await fetch('/CompanyInfo/ValidateInvitation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -260,7 +198,7 @@
 
             const result = await response.json();
 
-            document.getElementById('addCompanyForm').reset(); // Limpia el formulario
+            document.getElementById('addCompanyForm').reset(); 
 
             if (result.success) {
                 Swal.fire({
@@ -271,8 +209,7 @@
                     confirmButtonText: 'Cerrar sesión',
                     cancelButtonText: 'Permanecer en la página'
                 }).then(async (response) => {
-                    if (response.isConfirmed) {
-                        // Realiza una solicitud POST para cerrar sesión
+                    if (response.isConfirmed) {                       
                         await fetch('/Login/Close', {
                             method: 'POST',
                             headers: {
@@ -281,7 +218,7 @@
                         });
                         window.location.href = '/home';
                     } else {
-                        location.reload(); // Recarga la página si el usuario decide permanecer
+                        location.reload(); 
                     }
                 });
             } else {
@@ -292,7 +229,7 @@
                 });
             }
         } catch (error) {
-            document.getElementById('addCompanyForm').reset(); // Limpia el formulario
+            document.getElementById('addCompanyForm').reset(); 
 
             Swal.fire({
                 icon: 'error',
@@ -301,7 +238,4 @@
             });
         }
     });
-
-
-
 });

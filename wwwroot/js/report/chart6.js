@@ -104,8 +104,8 @@ function renderEmotionalBaggage(data, containerId, progressProperty, inverse) {
         secondRow: document.createElement('div'),
     };
 
-    rows.firstRow.className = 'row m-5';
-    rows.secondRow.className = 'row m-5';
+    rows.firstRow.className = 'row m-1 m-md-5';
+    rows.secondRow.className = 'row m-1 m-md-5';
 
     const accordions = {
         crianza: document.createElement('div'),
@@ -142,7 +142,7 @@ function renderEmotionalBaggage(data, containerId, progressProperty, inverse) {
       <h2 class="accordion-header bg-blue1" id="${headingId}">
             <div class="row">
                 <div class="col-md-3 d-flex align-items-center justify-content-center">
-                    <div class="progress ms-4" role="progressbar" aria-label="Example with label"
+                    <div class="progress m-2" role="progressbar" aria-label="Example with label"
                          aria-valuenow="${progressValue}" aria-valuemin="0" aria-valuemax="100" style="height: 1.5rem;">
                         <div class="progress-bar" style="width: ${progressValue}%">${progressValue}%</div>
                     </div>

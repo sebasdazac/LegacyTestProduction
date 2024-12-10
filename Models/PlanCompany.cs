@@ -17,8 +17,8 @@ namespace LegacyTest.Models
         public DateTime DateEnd { get; set; }
         public bool? IsActive { get; set; }
 
-        public virtual Company IdCompanyNavigation { get; set; } = null!;
-        public virtual Plan IdPlanNavigation { get; set; } = null!;
-        public virtual ICollection<AnswerCriterionCompany> AnswerCriterionCompanies { get; set; }
+        public virtual Company? IdCompanyNavigation { get; set; } 
+        public virtual Plan? IdPlanNavigation { get; set; } 
+        public virtual ICollection<AnswerCriterionCompany>? AnswerCriterionCompanies { get; set; }
     }
 }

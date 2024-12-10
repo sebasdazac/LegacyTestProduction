@@ -6,6 +6,7 @@ using LegacyTest.Tools;
 using jsreport.AspNetCore;
 using jsreport.Types;
 using LegacyTest.Models.ReportAux;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -25,19 +26,7 @@ namespace LegacyTest.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        //public async Task<IActionResult> Index1()
-        //{
-        //    var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
-
-        //    var forms = await _context.PlanCompanies
-        //             .Include(pc => pc.IdPlanNavigation.FormPlans)
-        //                 .ThenInclude(fp => fp.IdFormNavigation)                            
-        //             .Where(pc => pc.IdCompany == idCompany)
-        //             .SelectMany(pc => pc.IdPlanNavigation.FormPlans).Where(pc => pc.IsActive == true)                 
-        //             .ToListAsync();
-        //    return View(forms); ;
-        //}
-
+     
         public async Task<IActionResult> Index()
         {
             ViewBag.reports = "active";
@@ -73,211 +62,218 @@ namespace LegacyTest.Controllers
 
 
 
-        [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> GeneratePdf(long idForm )
-        {
+        //[MiddlewareFilter(typeof(JsReportPipeline))]
+        //public async Task<IActionResult> GeneratePdf(long idForm)
+        //{
 
-            try
-            {
-                long idCompany = 1;
-                long idPlanCompany = 1;
-              
+        //    try
+        //    {
+        //        var idPerson = long.Parse(SessionHelper.GetValue(User, "IdPerson"));
+        //        var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+        //        var idPlanCompany = long.Parse(SessionHelper.GetValue(User, "IdPlanCompany"));
 
-
-                FormReport form = await _context.Forms
-                                  .Where(x => x.Id == idForm)
-                                  .Select(x => new FormReport
-                                  {
-                                      Id = x.Id,
-                                      NameForm = x.NameForm,
-                                      DescriptionReport = x.DescriptionReport,
-                                      IsActive = x.IsActive
-                                  })
-                                  .FirstOrDefaultAsync();
-
-
-
-                List<ReportScale> scales = await _context.ReportScales.Where(x => x.IdForm == idForm).ToListAsync();
-
-                List<CharacterizationByCompany> criterionCharacterizations = await _context.CharacterizationByCompanies
-                                                       .Where(x => x.IdCompany == idCompany
-                                                                && x.IdPlanCompany == idPlanCompany
-                                                                && x.IdForm == idForm)
-                                                       .ToListAsync();
-
-
-                List<long> characterizationIds = criterionCharacterizations.Select(cc => cc.IdCharacterization).ToList();
-
-                List<EffectReport> effects = await _context.CharacterizationEffects
-                                                      .Select(x => new EffectReport
-                                                     {
-                                                         Id = x.Id,
-                                                         IdCharacterization = x.IdCharacterization,                                                         
-                                                         EffectDescription = x.Effect ?? string.Empty,
-                                                         EffectType = x.EffectType ?? string.Empty
-                                                     })
-                                                     .Where(x => characterizationIds.Contains(x.IdCharacterization))
-                                                     .ToListAsync();
-
-                List<RecommendationReport> recomendations = await _context.CharacterizationRecomendations                                                       
-                                                            .Select(x => new RecommendationReport
-                                                            {
-                                                                Id = x.Id,                                                               
-                                                                IdCharacterization = x.IdCharacterization,
-                                                                RecommendationDescription = x.Recomendation,
-                                                                RecommendationType = x.RecomendationType
-                                                            })
-                                                            .Where(x => characterizationIds.Contains(x.IdCharacterization))
-                                                            .ToListAsync();
-
-                var combinedResults = from characterization in criterionCharacterizations
-                                      join effect in effects
-                                      on characterization.IdCharacterization equals effect.IdCharacterization into effectGroup
-                                      from eg in effectGroup.DefaultIfEmpty()  // Incluye todos los characterization, incluso si no hay efectos
-                                      join recommendation in recomendations
-                                      on characterization.IdCharacterization equals recommendation.IdCharacterization into recommendationGroup
-                                      from rg in recommendationGroup.DefaultIfEmpty()  // Incluye todas las recomendaciones, incluso si no hay recomendaciones
-                                      group new { eg, rg } by characterization into combinedGroup
-                                      select new CombinedResult
-                                      {
-                                          IdCharacterization = combinedGroup.Key.IdCharacterization,
-                                          Characterization = combinedGroup.Key.Characterization,
-                                          Effects = combinedGroup.Where(x => x.eg != null).Select(x => x.eg).Distinct().ToList(),
-                                          Recommendations = combinedGroup.Where(x => x.rg != null).Select(x => x.rg).Distinct().ToList()
-                                      };
+        //        FormReport form = await _context.Forms
+        //                          .Where(x => x.Id == idForm)
+        //                          .Select(x => new FormReport
+        //                          {
+        //                              Id = x.Id,
+        //                              NameForm = x.NameForm,
+        //                              DescriptionReport = x.DescriptionReport,
+        //                              IsActive = x.IsActive
+        //                          })
+        //                          .FirstOrDefaultAsync();
 
 
 
+        //        List<ReportScale> scales = await _context.ReportScales.Where(x => x.IdForm == idForm).ToListAsync();
 
-                var resultList = combinedResults.ToList();
+        //        List<CharacterizationByCompany> criterionCharacterizations = await _context.CharacterizationByCompanies
+        //                                               .Where(x => x.IdCompany == idCompany
+        //                                                        && x.IdPlanCompany == idPlanCompany
+        //                                                        && x.IdForm == idForm)
+        //                                               .ToListAsync();
 
-                ResponseReport responseReport = new ResponseReport
-                {
-                    Form = form,
-                    Scales = scales,                    
-                    CombinedResults = resultList                    
-                };
 
-                HttpContext.JsReportFeature()
-                   .Recipe(Recipe.ChromePdf)
-                   .Configure(cfg =>
-                   {
-                       cfg.Template.Chrome = new Chrome
-                       {
-                           MarginTop = "1cm",
-                           MarginLeft = "1cm",
-                           MarginBottom = "1cm",
-                           MarginRight = "1cm",
-                           WaitForJS = true
-                       };
-                   });
+        //        List<long> characterizationIds = criterionCharacterizations.Select(cc => cc.IdCharacterization).ToList();
 
-                return View("ReportPdf", responseReport);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+        //        List<EffectReport> effects = await _context.CharacterizationEffects
+        //                                              .Select(x => new EffectReport
+        //                                              {
+        //                                                  Id = x.Id,
+        //                                                  IdCharacterization = x.IdCharacterization,
+        //                                                  EffectDescription = x.Effect ?? string.Empty,
+        //                                                  EffectType = x.EffectType ?? string.Empty
+        //                                              })
+        //                                             .Where(x => characterizationIds.Contains(x.IdCharacterization))
+        //                                             .ToListAsync();
+
+        //        List<RecommendationReport> recomendations = await _context.CharacterizationRecomendations
+        //                                                    .Select(x => new RecommendationReport
+        //                                                    {
+        //                                                        Id = x.Id,
+        //                                                        IdCharacterization = x.IdCharacterization,
+        //                                                        RecommendationDescription = x.Recomendation,
+        //                                                        RecommendationType = x.RecomendationType
+        //                                                    })
+        //                                                    .Where(x => characterizationIds.Contains(x.IdCharacterization))
+        //                                                    .ToListAsync();
+
+        //        var combinedResults = from characterization in criterionCharacterizations
+        //                              join effect in effects
+        //                              on characterization.IdCharacterization equals effect.IdCharacterization into effectGroup
+        //                              from eg in effectGroup.DefaultIfEmpty()  // Incluye todos los characterization, incluso si no hay efectos
+        //                              join recommendation in recomendations
+        //                              on characterization.IdCharacterization equals recommendation.IdCharacterization into recommendationGroup
+        //                              from rg in recommendationGroup.DefaultIfEmpty()  // Incluye todas las recomendaciones, incluso si no hay recomendaciones
+        //                              group new { eg, rg } by characterization into combinedGroup
+        //                              select new CombinedResult
+        //                              {
+        //                                  IdCharacterization = combinedGroup.Key.IdCharacterization,
+        //                                  Characterization = combinedGroup.Key.Characterization,
+        //                                  Effects = combinedGroup.Where(x => x.eg != null).Select(x => x.eg).Distinct().ToList(),
+        //                                  Recommendations = combinedGroup.Where(x => x.rg != null).Select(x => x.rg).Distinct().ToList()
+        //                              };
 
 
 
 
-        public async Task<IActionResult> PartialReport(long idForm)
-        {
+        //        var resultList = combinedResults.ToList();
 
-            try
-            {
-                long idCompany = 1;
-                long idPlanCompany = 1;
+        //        ResponseReport responseReport = new ResponseReport
+        //        {
+        //            Form = form,
+        //            Scales = scales,
+        //            CombinedResults = resultList
+        //        };
+
+        //        HttpContext.JsReportFeature()
+        //           .Recipe(Recipe.ChromePdf)
+        //           .Configure(cfg =>
+        //           {
+        //               cfg.Template.Chrome = new Chrome
+        //               {
+        //                   MarginTop = "1cm",
+        //                   MarginLeft = "1cm",
+        //                   MarginBottom = "1cm",
+        //                   MarginRight = "1cm",
+        //                   WaitForJS = true
+        //               };
+        //           });
+
+        //        var reportExport = new ReportExport
+        //        {
+        //            IdPerson = idPerson,
+        //            IdPlanCompany = idPlanCompany,
+        //            IdCompany = idCompany,
+        //            IdForm = idForm,
+        //            ExportDate = DateTime.Now
+        //        };
+
+        //        _context.ReportExports.Add(reportExport);
+        //        await _context.SaveChangesAsync();
 
 
-
-                FormReport form = await _context.Forms
-                                  .Where(x => x.Id == idForm)
-                                  .Select(x => new FormReport
-                                  {
-                                      Id = x.Id,
-                                      NameForm = x.NameForm,
-                                      DescriptionReport = x.DescriptionReport,
-                                      IsActive = x.IsActive
-                                  })
-                                  .FirstOrDefaultAsync();
-
-
-
-                List<ReportScale> scales = await _context.ReportScales.Where(x => x.IdForm == idForm).ToListAsync();
-
-                List<CharacterizationByCompany> criterionCharacterizations = await _context.CharacterizationByCompanies
-                                                       .Where(x => x.IdCompany == idCompany
-                                                                && x.IdPlanCompany == idPlanCompany
-                                                                && x.IdForm == idForm)
-                                                       .ToListAsync();
-
-
-                List<long> characterizationIds = criterionCharacterizations.Select(cc => cc.IdCharacterization).ToList();
-
-                List<EffectReport> effects = await _context.CharacterizationEffects
-                                                      .Select(x => new EffectReport
-                                                      {
-                                                          Id = x.Id,
-                                                          IdCharacterization = x.IdCharacterization,
-                                                          EffectDescription = x.Effect ?? string.Empty,
-                                                          EffectType = x.EffectType ?? string.Empty
-                                                      })
-                                                     .Where(x => characterizationIds.Contains(x.IdCharacterization))
-                                                     .ToListAsync();
-
-                List<RecommendationReport> recomendations = await _context.CharacterizationRecomendations
-                                                            .Select(x => new RecommendationReport
-                                                            {
-                                                                Id = x.Id,
-                                                                IdCharacterization = x.IdCharacterization,
-                                                                RecommendationDescription = x.Recomendation,
-                                                                RecommendationType = x.RecomendationType
-                                                            })
-                                                            .Where(x => characterizationIds.Contains(x.IdCharacterization))
-                                                            .ToListAsync();
-
-                var combinedResults = from characterization in criterionCharacterizations
-                                      join effect in effects
-                                      on characterization.IdCharacterization equals effect.IdCharacterization into effectGroup
-                                      from eg in effectGroup.DefaultIfEmpty()  // Incluye todos los characterization, incluso si no hay efectos
-                                      join recommendation in recomendations
-                                      on characterization.IdCharacterization equals recommendation.IdCharacterization into recommendationGroup
-                                      from rg in recommendationGroup.DefaultIfEmpty()  // Incluye todas las recomendaciones, incluso si no hay recomendaciones
-                                      group new { eg, rg } by characterization into combinedGroup
-                                      select new CombinedResult
-                                      {
-                                          IdCharacterization = combinedGroup.Key.IdCharacterization,
-                                          Characterization = combinedGroup.Key.Characterization,
-                                          Effects = combinedGroup.Where(x => x.eg != null).Select(x => x.eg).Distinct().ToList(),
-                                          Recommendations = combinedGroup.Where(x => x.rg != null).Select(x => x.rg).Distinct().ToList()
-                                      };
+        //        return View("ReportPdf", responseReport);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Internal server error: {ex.Message}");
+        //    }
+        //}
 
 
 
 
-                var resultList = combinedResults.ToList();
+        //public async Task<IActionResult> PartialReport(long idForm)
+        //{
 
-                ResponseReport responseReport = new ResponseReport
-                {
-                    Form = form,
-                    Scales = scales,
-                    CombinedResults = resultList
-                };
-
-                return PartialView("_PartialReport", responseReport);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+        //    try
+        //    {
+        //        var idCompany = long.Parse(SessionHelper.GetValue(User, "IdCompany"));
+        //        var idPlanCompany = long.Parse(SessionHelper.GetValue(User, "IdPlanCompany"));
 
 
+        //        FormReport form = await _context.Forms
+        //                          .Where(x => x.Id == idForm)
+        //                          .Select(x => new FormReport
+        //                          {
+        //                              Id = x.Id,
+        //                              NameForm = x.NameForm,
+        //                              DescriptionReport = x.DescriptionReport,
+        //                              IsActive = x.IsActive
+        //                          })
+        //                          .FirstOrDefaultAsync();
 
 
+
+        //        List<ReportScale> scales = await _context.ReportScales.Where(x => x.IdForm == idForm).ToListAsync();
+
+        //        List<CharacterizationByCompany> criterionCharacterizations = await _context.CharacterizationByCompanies
+        //                                               .Where(x => x.IdCompany == idCompany
+        //                                                        && x.IdPlanCompany == idPlanCompany
+        //                                                        && x.IdForm == idForm)
+        //                                               .ToListAsync();
+
+
+        //        List<long> characterizationIds = criterionCharacterizations.Select(cc => cc.IdCharacterization).ToList();
+
+        //        List<EffectReport> effects = await _context.CharacterizationEffects
+        //                                              .Select(x => new EffectReport
+        //                                              {
+        //                                                  Id = x.Id,
+        //                                                  IdCharacterization = x.IdCharacterization,
+        //                                                  EffectDescription = x.Effect ?? string.Empty,
+        //                                                  EffectType = x.EffectType ?? string.Empty
+        //                                              })
+        //                                             .Where(x => characterizationIds.Contains(x.IdCharacterization))
+        //                                             .ToListAsync();
+
+        //        List<RecommendationReport> recomendations = await _context.CharacterizationRecomendations
+        //                                                    .Select(x => new RecommendationReport
+        //                                                    {
+        //                                                        Id = x.Id,
+        //                                                        IdCharacterization = x.IdCharacterization,
+        //                                                        RecommendationDescription = x.Recomendation,
+        //                                                        RecommendationType = x.RecomendationType
+        //                                                    })
+        //                                                    .Where(x => characterizationIds.Contains(x.IdCharacterization))
+        //                                                    .ToListAsync();
+
+        //        var combinedResults = from characterization in criterionCharacterizations
+        //                              join effect in effects
+        //                              on characterization.IdCharacterization equals effect.IdCharacterization into effectGroup
+        //                              from eg in effectGroup.DefaultIfEmpty()  // Incluye todos los characterization, incluso si no hay efectos
+        //                              join recommendation in recomendations
+        //                              on characterization.IdCharacterization equals recommendation.IdCharacterization into recommendationGroup
+        //                              from rg in recommendationGroup.DefaultIfEmpty()  // Incluye todas las recomendaciones, incluso si no hay recomendaciones
+        //                              group new { eg, rg } by characterization into combinedGroup
+        //                              select new CombinedResult
+        //                              {
+        //                                  IdCharacterization = combinedGroup.Key.IdCharacterization,
+        //                                  Characterization = combinedGroup.Key.Characterization,
+        //                                  Effects = combinedGroup.Where(x => x.eg != null).Select(x => x.eg).Distinct().ToList(),
+        //                                  Recommendations = combinedGroup.Where(x => x.rg != null).Select(x => x.rg).Distinct().ToList()
+        //                              };
+
+
+
+
+        //        var resultList = combinedResults.ToList();
+
+        //        ResponseReport responseReport = new ResponseReport
+        //        {
+        //            Form = form,
+        //            Scales = scales,
+        //            CombinedResults = resultList
+        //        };
+
+        //        return PartialView("_PartialReport", responseReport);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Internal server error: {ex.Message}");
+        //    }
+        //}
 
     }
 }

@@ -1,0 +1,491 @@
+﻿@{
+    ViewData["Title"] = "Exported Reports";
+}
+<div class="row bg-blue2 pb-5">
+    <div class="col-md-12 p-5">
+        <h3 class=" fw-bolder text-white"><i class="bi bi-person-rolodex me-2"></i>Supervisor</h3>
+    </div>
+</div>
+
+
+<div class="container px-4 mt-3">
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label> Reportes Exportados</label>
+                </div>
+                <div class="card-body">
+                    <table id="exportedReportsTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre Empresa</th>
+                                <th>Nombre Usuario</th>
+                                <th>Correo Usuario</th>
+                                <th>Formulario Exportado</th>
+                                <th>Fecha de Exportación</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label> Transacciones por Empresas</label>
+                </div>
+                <div class="card-body">
+                    <table id="companyTransactionsTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Empresa</th>
+                                <th>Fecha de Transacción</th>
+                                <th>Monto</th>
+                                <th>Moneda</th>
+                                <th>Método de Pago</th>
+                                <th>Estado de la Transacción</th>
+                                <th>Número de Referencia</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label> Usuarios que han iniciado sesión</label>
+                </div>
+                <div class="card-body">
+                    <table id="loginSessionsTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Empresa</th>
+                                <th>Nombre de Usuario</th>
+                                <th>Fecha de Inicio de Sesión</th>
+                                <th>Fecha de Cierre de Sesión</th>
+                                <th>Estado de la Sesión</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label>Planes por Empresa</label>
+                </div>
+                <div class="card-body">
+                    <table id="companyPlansTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Empresa</th>
+                                <th>Nombre del Plan</th>
+                                <th>Estado del Plan</th>
+                                <th>Fecha de Inicio de Vigencia</th>
+                                <th>Fecha de Fin de Vigencia</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label>Usuarios por Empresa</label>
+                </div>
+                <div class="card-body">
+                    <table id="usersByCompanyTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Empresa</th>
+                                <th>Nombre del Usuario</th>
+                                <th>Correo Electrónico</th>
+                                <th>Estado</th>
+                                <th>Fecha de Registro</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <label>Formularios Contestados por Empresa y Plan</label>
+                </div>
+                <div class="card-body">
+                    <table id="formCompletionByCompanyTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre de la Empresa</th>
+                                <th>Nombre del Plan</th>
+                                <th>Total de Formularios Contestados</th>
+                                <th>Total de Veces Contestados</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+@section Scripts {
+    <script>
+        $('#exportedReportsTable').DataTable({
+            ajax: {
+                url: '@Url.Action("GetExportedReports", "Supervisor")',
+                dataSrc: ''
+            },
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'userName', className: 'text-center' },
+                { data: 'userEmail', className: 'text-center' },
+                { data: 'exportedForm', className: 'text-center' },
+                { data: 'exportDate', className: 'text-center' }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'ExportedReports'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'ExportedReports'
+                }
+            ]
+        });
+
+        $('#companyTransactionsTable').DataTable({
+            ajax: {
+                url: '@Url.Action("GetCompanyTransactions", "Supervisor")',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'transactionDate', className: 'text-center' },
+                { data: 'amount', className: 'text-center' },
+                { data: 'currency', className: 'text-center' },
+                { data: 'paymentMethod', className: 'text-center' },
+                { data: 'transactionState', className: 'text-center' },
+                { data: 'referenceNumber', className: 'text-center' }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'TransaccionesPorEmpresa'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'TransaccionesPorEmpresa'
+                }
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            }
+        });
+
+        $('#loginSessionsTable').DataTable({
+            ajax: {
+                url: '@Url.Action("GetLoginSessions", "Supervisor")',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'userName', className: 'text-center' },
+                { data: 'loginDate', className: 'text-center' },
+                { data: 'logoutDate', className: 'text-center' },
+                { data: 'sessionState', className: 'text-center' }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'LoginSessions'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'LoginSessions'
+                }
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            }
+        });
+
+        $('#companyPlansTable').DataTable({
+            ajax: {
+                url: '/Supervisor/GetCompanyPlans',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'planName', className: 'text-center' },
+                {
+                    data: 'planStatus',
+                    className: 'text-center',
+                    render: function (data) {
+                        return data ? 'Activo' : 'Inactivo';
+                    }
+                },
+                {
+                    data: 'validityStart',
+                    className: 'text-center',
+                    render: function (data) {
+                        return new Date(data).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        });
+                    }
+                },
+                {
+                    data: 'validityEnd',
+                    className: 'text-center',
+                    render: function (data) {
+                        return new Date(data).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        });
+                    }
+                }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'CompanyPlans'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'CompanyPlans'
+                }
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            }
+        });
+
+
+        $('#usersByCompanyTable').DataTable({
+            ajax: {
+                url: '/Supervisor/GetUsersByCompany',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'userName', className: 'text-center' },
+                { data: 'email', className: 'text-center' },
+                {
+                    data: 'isActive',
+                    render: function (data) {
+                        return data;
+                    },
+                    className: 'text-center'
+                },
+                {
+                    data: 'registrationDate',
+                    render: function (data) {
+                        return new Date(data).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        });
+                    },
+                    className: 'text-center'
+                }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'UsersByCompany'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'UsersByCompany'
+                }
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            }
+        });
+
+
+
+        $('#formCompletionByCompanyTable').DataTable({
+            ajax: {
+                url: '/Supervisor/GetFormCompletionByCompany',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'companyName', className: 'text-center' },
+                { data: 'planName', className: 'text-center' },
+                { data: 'formCount', className: 'text-center' },
+                { data: 'totalEntries', className: 'text-center' }
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'FormCompletionByCompany'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'FormCompletionByCompany'
+                }
+            ],
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/2.1.0/i18n/es-MX.json",
+                decimal: "",
+                emptyTable: "No hay información",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                infoFiltered: "(Filtrado de _MAX_ registros totales)",
+                infoPostFix: "",
+                thousands: ",",
+                lengthMenu: "Mostrar _MENU_ registros",
+                loadingRecords: "Cargando...",
+                processing: "Procesando...",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron resultados",
+                paginate: {
+                    first: "<<",
+                    last: ">>",
+                    next: ">",
+                    previous: "<"
+                }
+            }
+        });
+
+
+
+
+    </script>
+}
+

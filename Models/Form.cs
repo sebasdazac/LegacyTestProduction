@@ -19,6 +19,8 @@ namespace LegacyTest.Models
         public bool IsActive { get; set; }
         public string? Alert { get; set; } = string.Empty;
 
+        public string? Info { get; set; } = string.Empty;
+
         public virtual ICollection<Criterion>? Criteria { get; set; }
         public virtual ICollection<FormPlan>? FormPlans { get; set; }
         public virtual ICollection<ReportScale>? ReportScales { get; set; }

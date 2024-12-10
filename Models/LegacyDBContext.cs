@@ -50,6 +50,7 @@ namespace LegacyTest.Models
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<PlanCompany> PlanCompanies { get; set; } = null!;
         public virtual DbSet<Question> Questions { get; set; } = null!;
+        public virtual DbSet<ReportExport> ReportExports { get; set; } = null!;
         public virtual DbSet<ReportScale> ReportScales { get; set; } = null!;
         public virtual DbSet<Session> Sessions { get; set; } = null!;
         public virtual DbSet<TransactionCompany> TransactionCompanies { get; set; } = null!;
@@ -372,7 +373,17 @@ namespace LegacyTest.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Token).IsUnicode(false);
+                entity.Property(e => e.Token)
+                      .IsUnicode(false);                 
+
+                entity.Property(e => e.Photo);
+
+                entity.Property(e => e.ResetToken)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ResetTokenExpiry)
+                        .HasColumnType("datetime");
+
 
                 entity.HasOne(d => d.IdCompanyNavigation)
                     .WithMany(p => p.People)
@@ -401,10 +412,6 @@ namespace LegacyTest.Models
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Forms)
-                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IsActive)
@@ -464,6 +471,17 @@ namespace LegacyTest.Models
                     .HasConstraintName("FK_Question_Question");
             });
 
+            modelBuilder.Entity<ReportExport>(entity =>
+            {
+                entity.ToTable("ReportExport");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ExportDate)
+                      .HasColumnType("date");            
+            });
+
+
             modelBuilder.Entity<ReportScale>(entity =>
             {
                 entity.ToTable("ReportScale");
@@ -486,20 +504,24 @@ namespace LegacyTest.Models
 
             modelBuilder.Entity<Session>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("Session");
 
-                entity.Property(e => e.DateEnd).HasColumnType("datetime");
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.DateStart).HasColumnType("datetime");
+                entity.Property(e => e.DateEnd)
+                    .HasColumnType("datetime");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.DateStart)
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.Stated)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
+
 
             modelBuilder.Entity<TransactionCompany>(entity =>
             {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using LegacyTest.Controllers;
 using System;
 
-namespace DannteNet6.Tools
+namespace LegacyTest.Tools
 {
     public class VerifySession : ActionFilterAttribute
     {

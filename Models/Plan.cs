@@ -17,12 +17,11 @@ namespace LegacyTest.Models
         public string? Color { get; set; }
         public string? Description { get; set; }
         public string? UserAccount { get; set; }
-        public string? Forms { get; set; }
         public string? Bonus { get; set; }
         public int? Sort { get; set; }
         public bool? IsActive { get; set; }
-
-        public virtual ICollection<FormPlan> FormPlans { get; set; }
-        public virtual ICollection<PlanCompany> PlanCompanies { get; set; }
+        public int? LimitAccount { get; set; }  
+        public virtual ICollection<FormPlan>? FormPlans { get; set; }
+        public virtual ICollection<PlanCompany>? PlanCompanies { get; set; }
     }
 }

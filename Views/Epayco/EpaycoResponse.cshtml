@@ -1,0 +1,141 @@
+﻿<div class="row mt-5 justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="row g-0">
+                <!-- Columna con la imagen (visible solo en pantallas medianas y grandes) -->
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="~/img/pay_plan.jpg"
+                         class="img-fluid h-100"
+                         alt="Imagen relacionada con la transacción"
+                         style="object-fit: cover;">
+                </div>
+
+                <!-- Columna con la información de la transacción -->
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Respuesta de la Transacción</h4>
+                        <hr>
+                        <div id="resultadoTransaccion" class="fs-4"></div>
+                        <div id="nuevoPlan" class="fs-4 fw-bold text-success"></div>
+                        <div id="mensajeError" class="fs-4 fw-bold text-danger"></div>
+
+                        <!-- Contenido apilado hacia abajo -->
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Referencia</h5>
+                                <p id="referencia" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Fecha</h5>
+                                <p id="fecha" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Respuesta</h5>
+                                <p id="respuesta" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Motivo</h5>
+                                <p id="motivo" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Banco</h5>
+                                <p id="banco" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Recibo</h5>
+                                <p id="recibo" class="card-text fs-5"></p>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <h5 class="card-title">Total</h5>
+                                <p id="total" class="card-text fs-5"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        // Obtener el valor de ref_payco desde la vista Razor
+        var ref_payco = '@ViewBag.RefPayco';
+        var url = "/Epayco/GetTransactionStatus?ref_payco=" + ref_payco;
+
+        // Realiza la solicitud GET a la acción del controlador que obtiene el estado de la transacción
+        $.get(url, function (response) {
+
+            console.log(response);
+
+            if (response.success) {  // Aquí verificamos si success es true
+                var transaction = response.transactionDetails;
+
+                if (transaction.x_cod_response == 1) {
+                    // Transacción aprobada
+                    $('#resultadoTransaccion').html('<strong>¡Transacción Aprobada!</strong> Su transacción ha sido aprobada exitosamente.');
+                    $('#nuevoPlan').html('Su nuevo plan es: <strong>' + transaction.x_description + '</strong>');
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Transacción Aprobada',
+                        text: 'Su transacción ha sido aprobada exitosamente.'
+                    });
+                } else if (transaction.x_cod_response == 2) {
+                    // Transacción rechazada
+                    $('#resultadoTransaccion').html('<strong>Transacción Rechazada</strong> Lo sentimos, su transacción fue rechazada.');
+                    $('#mensajeError').html('No se realizó ningún cambio en su plan.');
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Transacción Rechazada',
+                        text: 'Lo sentimos, su transacción ha sido rechazada.'
+                    });
+                } else if (transaction.x_cod_response == 3) {
+                    // Transacción pendiente
+                    $('#resultadoTransaccion').html('<strong>Transacción Pendiente</strong> Su transacción está pendiente de aprobación.');
+
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Transacción Pendiente',
+                        text: 'Su transacción está pendiente de aprobación.'
+                    });
+                } else if (transaction.x_cod_response == 4) {
+                    // Transacción fallida
+                    $('#resultadoTransaccion').html('<strong>Transacción Fallida</strong> Ocurrió un error en su transacción.');
+                    $('#mensajeError').html('No se realizó ningún cambio en su plan.');
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Transacción Fallida',
+                        text: 'Ocurrió un error en su transacción. Intente nuevamente.'
+                    });
+                }
+
+                // Actualizar otros campos de la transacción
+                $('#fecha').html(transaction.x_transaction_date);
+                $('#respuesta').html(transaction.x_response);
+                $('#referencia').text(transaction.x_id_invoice);
+                $('#motivo').text(transaction.x_response_reason_text);
+                $('#recibo').text(transaction.x_transaction_id);
+                $('#banco').text(transaction.x_bank_name);
+                $('#total').text(transaction.x_amount + ' ' + transaction.x_currency_code);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error consultando la información de la transacción.'
+                });
+            }
+        }).fail(function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un problema al consultar la transacción.'
+            });
+        });
+    });
+</script>
+
+}

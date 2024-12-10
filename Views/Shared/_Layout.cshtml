@@ -10,19 +10,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legacy Test</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="~/css/legacy-bootstrap.css" rel="stylesheet" />
     <link href="~/css/legacy-color.css" rel="stylesheet" />
     <link href="~/css/legacy-layout.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="~/css/legacy-font.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <link href="~/lib/datatables.net-bs5/css/datatables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables.net-datetime/dist/datatables.datetime.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables.net-searchbuilder-bs5/css/searchbuilder.bootstrap5.min.css" rel="stylesheet" />
+
+
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid d-flex justify-content-center position-relative">
-            <a class="navbar-brand" href="#">
-                <img src="~/img/logo-legacytest.svg" alt="Logo Legacy Test" class="img-fluid">
+        <div class="container-fluid d-flex justify-content-center align-content-center position-relative">
+            <a class="navbar-brand d-flex justify-content-center align-content-center " href="#">
+                <img src="~/img/logo-legacytest.svg" alt="Logo Legacy Test" class="img-fluid w-75">
             </a>
             <button class="hamburger-btn position-absolute end-0" id="sidebarToggle">
                 <i class="bi bi-list fs-4"></i>
@@ -57,81 +68,118 @@
 
         <div class="user-menu submenu" id="userMenu">
             <a class="@ViewBag.account" asp-controller="Company" asp-action="Account">
-                <i class="bi bi-pencil-square fs-5 me-3"></i> 
+                <i class="bi bi-pencil-square fs-5 me-3"></i>
                 Editar
             </a>
             <a href="#" onclick="CloseSession();">
-                <i class="bi bi-box-arrow-left fs-5 me-3"></i> 
+                <i class="bi bi-box-arrow-left fs-5 me-3"></i>
                 Cerrar Sesión
             </a>
         </div>
 
         <div class="main-menu">
-            <a class="main-menu-link @ViewBag.dashboard " asp-controller="Dashboard" asp-action="Index">
-                <i class="bi bi-grid fs-5 me-3"></i>
-                Tablero principal
-            </a>
 
-            <a class="main-menu-link @ViewBag.questionary" asp-controller="Questionary" asp-action="Index" asp-route-idCompany="@idCompany">
-                <i class="bi bi-journal-check fs-5 me-3"></i>
-                Cuestionarios
-            </a>
-            <a class="main-menu-link @ViewBag.reports" asp-controller="Reports" asp-action="Index">
-                <i class="bi bi-bar-chart-line fs-5 me-3"></i>
-                Diagnóstico
-            </a>
-            <a id="companyToggle" class="main-menu-link d-flex justify-content-between align-items-center">
-                <div class="">
-                    <i class="bi bi-buildings fs-5 me-3"></i>
-                    Espacio Empresarial
+            @if (SessionHelper.GetValue(User, "IdRole") == "4")
+            {
+
+                <a class="main-menu-link @ViewBag.supervisor " asp-controller="Supervisor" asp-action="Index">
+                    <i class="bi bi-person-rolodex fs-5 me-3"></i>
+                    Supervisor
+                </a>
+            }
+
+          
+                <a class="main-menu-link @ViewBag.dashboard " asp-controller="Dashboard" asp-action="Index">
+                    <i class="bi bi-grid fs-5 me-3"></i>
+                    Tablero principal
+                </a>
+
+                <a class="main-menu-link @ViewBag.questionary" asp-controller="Questionary" asp-action="Index" asp-route-idCompany="@idCompany">
+                    <i class="bi bi-journal-check fs-5 me-3"></i>
+                    Cuestionarios
+                </a>
+                <a class="main-menu-link @ViewBag.reports" asp-controller="Reports" asp-action="Index">
+                    <i class="bi bi-bar-chart-line fs-5 me-3"></i>
+                    Diagnóstico
+                </a>
+
+                <a id="companyToggle" class="main-menu-link d-flex justify-content-between align-items-center">
+                    <div class="">
+                        <i class="bi bi-buildings fs-5 me-3"></i>
+                        Espacio Empresarial
+                    </div>
+                    <i class="bi bi-chevron-down fs-5 me-3"></i>
+                    <div class="submenu" id="companySubmenu">
+                        <a class="main-menu-link  @ViewBag.organization" asp-controller="CompanyInfo" asp-action="Organization">
+                            <i class="bi bi-building-gear fs-5 me-3"></i>
+                            Información Empresa
+                        </a>
+                        <a class="main-menu-link @ViewBag.plans" asp-controller="CompanyInfo" asp-action="Plans">
+                            <i class="bi bi-credit-card fs-5 me-3"></i>
+                            Planes
+                        </a>
+                        
+                    </div>
+
+            </div>
+            <div class="footer-image-container">
+                <img src="~/img/footer_menu.svg" alt="Footer Image" class="footer-image">
+            </div>
+
+        </div>
+
+        <main class="content containter" id="content">
+                    @RenderBody()
+        </main>
+        <footer class="mt-5 p-3" id="footer">
+            <div class="row m-0 p-0 d-flex align-items-center justify-content-center text-center text-md-start">
+                <div class="col-12 d-flex flex-column flex-md-row justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center mb-3 mb-md-0">
+                        <a href="https://www.facebook.com/profile.php?id=61553186978110" target="_blank"><i class="bi bi-facebook fs-4 mx-2"></i></a>
+                        <a href="https://www.instagram.com/legacynetworkco/" target="_blank"><i class="bi bi-instagram fs-4 mx-2"></i></a>
+                        <a href="https://www.linkedin.com/posts/legacy-network-co_gobiernocorporativo-planeaciaejnestrataezgicaempresarial-activity-7133490730156601344-iZgZ?utm_source=share&utm_medium=member_android" target="_blank"><i class="bi bi-linkedin fs-4 mx-2"></i></a>
+                        <a href="https://www.youtube.com/&#64;LegacyNetworkco" target="_blank">
+                            <i class="bi bi-youtube fs-3 mx-2"></i>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <a class="pt-2 me-3 mx-2" href="#">Privacidad</a>
+                        <a class="pt-2 me-3 mx-2" href="#">Términos y Referencias</a>
+                        <span class="pt-2 ms-md-5">Copyright &copy; Legacy Network - 2024</span>
+                    </div>
                 </div>
-                <i class="bi bi-chevron-down fs-5 me-3"></i>
-            </a>
-            <div class="submenu" id="companySubmenu">
-                <a class="main-menu-link  @ViewBag.organization" asp-controller="Company" asp-action="Organization">
-                    <i class="bi bi-building-gear fs-5 me-3"></i>
-                    Información Empresa
-                </a>
-                <a class="main-menu-link @ViewBag.plans" asp-controller="Company" asp-action="Plans">
-                    <i class="bi bi-credit-card fs-5 me-3"></i>
-                    Planes
-                </a>
             </div>
-        </div>
-    </div>
+        </footer>
 
-    <main class="content containter" id="content">
-        @RenderBody()
-    </main>
-    <footer class="mt-5 p-3" id="footer">
-        <div class="row m-0 p-0 d-flex align-items-center justify-content-center">
-            <div class="d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61553186978110" target="_blank"><i class="bi bi-facebook fs-4  mx-2"></i></a>
-                <a href="https://www.instagram.com/legacynetworkco/" target="_blank"><i class="bi bi-instagram fs-4  mx-2"></i></a>
-                <a href="https://www.linkedin.com/posts/legacy-network-co_gobiernocorporativo-planeaciaejnestrataezgicaempresarial-activity-7133490730156601344-iZgZ?utm_source=share&utm_medium=member_android" target="_blank"><i class="bi bi-linkedin fs-4  mx-2"></i></a>
-                <a href="https://www.youtube.com/&#64;LegacyNetworkco" target="_blank">
-                    <i class="bi bi-youtube fs-3 mx-2"></i>
-                </a>
-                <a class="pt-2 me-3 mx-2" href="#">Privacidad</a>
-                <a class="pt-2 me-3 mx-2" href="#">Términos y Referencias</a>
-                <span class="pt-2  ms-5">Copyright &copy; Legacy Network - 2024</span>
-            </div>
-        </div>
-    </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/chart.js/dist/chart.umd.min.js"></script>
+        <script src="~/lib/chartjs-chart-matrix/dist/chartjs-chart-matrix.min.js"></script>
+        <script src="~/lib/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
+        <script src="~/lib/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.min.js"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="~/lib/datatables.net/js/datatables.min.js"></script>
+        <script src="~/lib/datatables.net-bs5/js/datatables.bootstrap5.min.js"></script>
+        <script src="~/lib/datatables.net-responsive/js/datatables.responsive.min.js"></script>
+        <script src="~/lib/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+        <script src="~/lib/datatables.net-buttons/js/datatables.buttons.min.js"></script>
+        <script src="~/lib/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+        <script src="~/lib/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/lib/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="~/lib/datatables.net-buttons/js/buttons.colvis.min.js"></script>
+        <script src="~/lib/moment/min/moment.min.js"></script>
+        <script src="~/lib/datatables.net-datetime/dist/datatables.datetime.min.js"></script>
+        <script src="~/lib/datatables.net-searchbuilder/js/datatables.searchbuilder.min.js"></script>
+        <script src="~/lib/datatables.net-searchbuilder-bs5/js/searchbuilder.bootstrap5.js"></script>
+        <script src="~/lib/datatables-plugins/pagination/input.min.js"></script>
+        <script src="~/lib/pdfmake/pdfmake.min.js"></script>
+        <script src="~/lib/pdfmake/vfs_fonts.min.js"></script>
+        <script src="~/lib/jszip/dist/jszip.min.js"></script>
+        <script src="~/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
-    <script src="~/js/dashboard.js"></script>
-    <script src="~/js/main.js"></script>
+        <script src="~/js/dashboard.js"></script>
+        <script src="~/js/main.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+                @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    </html>

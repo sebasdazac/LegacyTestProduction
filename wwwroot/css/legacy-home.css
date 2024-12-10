@@ -7,8 +7,6 @@ body {
 
 html, body {
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
 }
 
 .container-fluid {
@@ -163,7 +161,7 @@ footer {
     background-color: #002B5B;
     color: #ffffff;
     padding: 0;
-    border-top: 10px solid #cc7722;
+    border-top: 10px solid #ffc107;
 }
 
     footer a {

@@ -11,10 +11,10 @@ function ConfigMatrix(data, labelsX, labelsY) {
     let config = {
         type: 'matrix',
         data: data,
-        options: {
+        options: {   
             animation: {
                 onComplete: function () {
-                    window.JSREPORT_READY_TO_START = true
+                    window.JSREPORT_READY_TO_START = true;
                 }
             },
             pointLabel: {
@@ -217,4 +217,5 @@ $.ajax({
         updateProgress(familyTrust, data[2].value2);   
 
     }
+    
 });

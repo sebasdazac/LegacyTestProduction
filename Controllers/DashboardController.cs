@@ -1,11 +1,13 @@
 ﻿using LegacyTest.Models;
 using LegacyTest.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace LegacyTest.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
 
