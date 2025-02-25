@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LegacyTest.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -46,6 +46,15 @@ namespace LegacyTest.Controllers
             ViewBag.ResponseUrl = _configuration["EpaycoSettings:EpaycoResponse"];
             ViewBag.ConfirmationUrl = _configuration["EpaycoSettings:EpaycoConfirmation"];
             ViewBag.Test = _configuration["EpaycoSettings:EpaycoTest"];
+            return View();
+        }
+
+
+        public IActionResult ForPlans()
+        {
+            ViewBag.company = "active";
+            ViewBag.menuCompany = "show";
+            ViewBag.plans = "active";
             return View();
         }
 

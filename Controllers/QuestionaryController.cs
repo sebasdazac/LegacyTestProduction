@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LegacyTest.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class QuestionaryController : Controller
     {
 
@@ -147,8 +147,10 @@ namespace LegacyTest.Controllers
         }
 
 
-
-
+        public IActionResult Questionaries()
+        { 
+            return View();
+        }
 
         //public async Task<IActionResult> ProcessForm([FromBody] List<FormData> formDataList)
         //{

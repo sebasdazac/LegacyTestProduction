@@ -52,10 +52,10 @@ builder.Services.AddAuthentication(options =>
 
 
 
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.KnownProxies.Add(IPAddress.Parse("66.94.114.234"));
-});
+//builder.Services.Configure<ForwardedHeadersOptions>(options =>
+//{
+//    options.KnownProxies.Add(IPAddress.Parse("66.94.114.234"));
+//});
 
 builder.Services.AddHttpContextAccessor();
 
@@ -73,26 +73,26 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddMvc();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", builder =>
+//    {
+//        builder.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader();
+//    });
+//});
 builder.Services.AddControllers();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", builder =>
+//    {
+//        builder.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader();
+//    });
+//});
 
 builder.Services.AddControllers();
 

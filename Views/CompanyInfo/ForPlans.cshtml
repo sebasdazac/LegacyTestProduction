@@ -1,0 +1,162 @@
+﻿<!-- Main page content-->
+<div class="container-xl px-4">
+    <div class="text-center my-10">
+    </div>
+    <!-- Detailed pricing example-->
+    <div class="pricing-detailed">
+        <div class="row align-items-center g-0">
+            <!-- Detailed pricing column 1-->
+            <div class="col-lg-6 z-1 mb-4 mb-lg-0">
+                <div class="card text-center border-0">
+                    <div class="card-header bg-transparent justify-content-center py-4"><h5 class="text-primary mb-0">Punto de Partida Empresarial</h5></div>
+                    <div class="card-body p-5">
+
+                        <div class="mb-4">
+                            <span class="display-4 fw-bold text-dark">$ - </span>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center justify-content-center mb-3">
+                                <i class="text-primary me-2" data-feather="check-circle"></i>
+                                Espacio empresarial
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center mb-3">
+                                <i class="text-primary me-2" data-feather="check-circle"></i>
+                                Descubre las trampas que te impiden avanzar sin costo
+                            </li>
+                            <li class="d-flex align-items-center justify-content-center">
+                                <i class="text-primary me-2" data-feather="check-circle"></i>
+                                10 Cuentas de Usuario
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-center">
+                        PLAN ACTUAL
+
+                    </div>
+                </div>
+            </div>
+            <!-- Detailed pricing column 2-->
+            <div class="col-lg-6">
+                <div class="card bg-dark text-center pricing-detailed-behind">
+                    <div class="card-header justify-content-center py-4"><h5 class="mb-0 text-white">GRATUITO</h5></div>
+                    <div class="card-body text-white-50 p-5">Este breve estudio está diseñado para ayudarte a identificar y abordar estas trampas, asegurando la sostenibilidad y el éxito de tu negocio y tu familia a largo plazo</div>
+                    <div class="card-footer bg-gray-800 text-white d-flex align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="my-10" />
+<div class="container mt-5">
+    <h2 class="text-center mb-4"></h2>
+
+    <!-- Tabla Responsive -->
+    <div class="table-responsive">
+        <table class="table table-hover text-center table-bordered">
+            <thead>
+                <tr>
+                    <th>Formulario</th>
+                    <th>Propiedad</th>
+                    <th>Formulario Empresa</th>
+                    <th>Empresa</th>
+                    <th>Formulario Familia</th>
+                    <th>Familia</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- Carrito de compras -->
+    <h2 class="text-center mt-5 mb-4">Carrito de compras</h2>
+    <table class="table table-bordered text-center table-hover">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="table-body-carrito"></tbody>
+        <tfoot>
+            <tr>
+                <td class="fw-bold">Total de productos:</td>
+                <td id="total-productos">0</td>
+            </tr>
+            <tr>
+                <td class="fw-bold">Total a pagar:</td>
+                <td id="total-pagar">$0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <button class="btn btn-primary w-100 mt-3 rounded-pill">Continuar compra</button>
+</div>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        // Datos de la tabla dinámica con precios
+        const data = [
+            { propiedad: "Cultura de la propiedad", form1: 8, empresa: "Cultura de la empresa", form2: 15, familia: "Cultura de la familia", precio: 93000 },
+            { propiedad: "Gobierno de la propiedad", form1: 9, empresa: "Gobierno de la empresa", form2: 16, familia: "Gobierno de la familia", precio: 134980 },
+            { propiedad: "Estrategia de la propiedad", form1: 10, empresa: "Estrategia de la empresa", form2: 17, familia: "Estrategia de la familia", precio: 120000 },
+            { propiedad: "Estructura de la propiedad", form1: 11, empresa: "Estructura de la empresa", form2: 18, familia: "Estructura de la familia", precio: 150000 },
+            { propiedad: "Sucesión de la propiedad", form1: 12, empresa: "Sucesión Ejecutiva", form2: 19, familia: "Sucesión Familiar", precio: 180000 },
+            { propiedad: "Sistemas de la propiedad", form1: 13, empresa: "Sistemas de la empresa", form2: 20, familia: "Sistemas de la familia", precio: 210000 },
+            { propiedad: "Rol del individuo en la propiedad", form1: 14, empresa: "Rol del individuo en la empresa", form2: 21, familia: "Rol del individuo en la familia", precio: 250000 }
+        ];
+
+        let tableBody = "";
+        data.forEach((row, index) => {
+            const formulario = index + 1;
+            tableBody += `
+            <tr>
+                <td class="align-middle">${formulario}</td>
+                <td class="align-middle">
+                    <button class='btn btn-outline-primary w-100 toggle-btn' data-nombre="${row.propiedad}" data-precio="${row.precio}">${row.propiedad}</button>
+                </td>
+                <td class="align-middle">${row.form1}</td>
+                <td class="align-middle">
+                    <button class='btn btn-outline-secondary w-100 toggle-btn' data-nombre="${row.empresa}" data-precio="${row.precio}">${row.empresa}</button>
+                </td>
+                <td class="align-middle">${row.form2}</td>
+                <td class="align-middle">
+                    <button class='btn btn-outline-info w-100 toggle-btn' data-nombre="${row.familia}" data-precio="${row.precio}">${row.familia}</button>
+                </td>
+            </tr>`;
+        });
+
+        $("#table-body").html(tableBody);
+
+        // Función para actualizar el carrito
+        const actualizarCarrito = () => {
+            let totalPagar = 0;
+            const productos = [];
+
+            $("#table-body-carrito").empty();
+
+            $(".toggle-btn.active").each(function () {
+                const nombre = $(this).data("nombre");
+                const precio = $(this).data("precio");
+                totalPagar += precio;
+                productos.push({ nombre, precio });
+
+                $("#table-body-carrito").append(`
+                    <tr>
+                        <td class="text-start">${nombre}</td>
+                        <td>${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(precio)}</td>
+                    </tr>
+                `);
+            });
+
+            $("#total-productos").text(productos.length);
+            $("#total-pagar").text(new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(totalPagar));
+        };
+
+        // Al hacer clic en un botón de la tabla dinámica
+        $(document).on("click", ".toggle-btn", function() {
+            $(this).toggleClass("active");
+            actualizarCarrito();
+        });
+    });
+</script>
+}
